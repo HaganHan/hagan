@@ -1,0 +1,28 @@
+/**
+ * 绑定对象的事件函数
+ * hagan.addEventListener(eBtn,"click",function fnAlert1(){})
+ * !IE10
+ */
+import _rely from './_rely'
+import getEventName from './getEventName'
+import addTapEventListener from './addTapEventListener'
+
+const addEventListener = function (eventElement, eventName, eventFunction, eventCapture = false) {
+  const eventId = _rely._eventId++
+  const _eventElement = eventElement
+  const _eventName = getEventName(eventName)
+  const _eventFunction = eventFunction
+  const _eventCapture = eventCapture
+  _rely._eventPool[eventId] = {  _eventElement, _eventName, _eventFunction, _eventCapture }
+
+  if (_eventElement.nodeType === 1 || _eventElement === window) {
+    if (_eventName === "tap") {
+      addTapEventListener(eventId)
+    } else {
+      _eventElement.addEventListener(_eventName, _eventFunction, _eventCapture)
+    }
+  }
+  return eventId
+}
+
+export default addEventListener

@@ -1,11 +1,9 @@
 {
   "name": "hagan",
-  "version": "1.0.2",
+  "version": "1.0.9",
   "description": "一个js工具库",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": { },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hanyonggang/hagan.git"
