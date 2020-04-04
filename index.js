@@ -26,6 +26,7 @@ import getElementSizeInfo from './getElementSizeInfo'
 import postWindow from "./postWindow"
 import getQueryStringFromParams from "./getQueryStringFromParams"
 import ajax from './ajax'
+import jsonp from './jsonp'
 import getType from './getType'
 
 const hagan = { // fnHideDom fnShowDom
@@ -57,22 +58,8 @@ const hagan = { // fnHideDom fnShowDom
   postWindow,
   getQueryStringFromParams,
   ajax,
+  jsonp,
   getType,
-
-  //得到ajax传参所需格式
-  fnGetAjaxStr(jData) {
-    let sResult = "";
-    for (let attr in jData) {
-      if (typeof jData[attr] === "object") {
-        sResult += `${attr}=${JSON.stringify(jData[attr])}&`;
-      } else {
-        sResult += `${attr}=${jData[attr]}&`;
-      }
-    }
-    return sResult;
-  },
-
-  //ajax封装  hagan.fnAjax({});
 
   //根据访问地址决定返回http或https
   fnGetHttpOrHttps(sUrl) {

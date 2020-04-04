@@ -10,13 +10,10 @@
   <script type="module">
     import ajax from './ajax.js'
     import getType from './getType.js'
+    import jsonp from './jsonp.js'
     const domBtn = document.querySelector('#btn')
     domBtn.onclick = async function () {
-      const res = await ajax({
-        url: 'https://www.easy-mock.com/mock/597e7bb7a1d30433d842015f/axios/putPeople',
-        params: { name: 'hagan' },
-        method: 'PUT'
-      })
+      const res = await jsonp("//y.lwt.360.cn/course_list", { name: 'hagan'})
       console.log('res: ', res)
     }
   </script>

@@ -4,17 +4,15 @@
 
 const getQueryStringFromParams = function (urlOrigin, params) {
   let url = urlOrigin
-  const paramsKeys = Object.keys(params)
-  if (paramsKeys.length === 0) return url
   if (url.indexOf("?") === -1) {
     url += "?"
   } else {
     url += "&"
   }
-  paramsKeys.forEach(paramKey => {
-    url += `${encodeURIComponent(paramKey)}=${encodeURIComponent(params[paramKey])}`
+  Object.keys(params).forEach(paramKey => {
+    url += `${encodeURIComponent(paramKey)}=${encodeURIComponent(params[paramKey])}&`
   })
-  return url
+  return url.substring(0, url.length - 1)
  }
 
  export default getQueryStringFromParams

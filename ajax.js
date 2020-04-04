@@ -4,16 +4,7 @@
 import getType from './getType.js'
 import getQueryStringFromParams from './getQueryStringFromParams.js'
 
-const ajax = function (
-  {
-    method = 'GET',
-    url = '/api',
-    params = {},
-    progress,
-    timeout,
-    timeoutCallback
-  }
-) {
+const ajax = function (url, params = {}, { method = 'GET', progress, timeout, timeoutCallback } = {}) {
   return new Promise((resolve, reject) => {
     const methodType = method.toUpperCase()
     const xhr = new XMLHttpRequest()
