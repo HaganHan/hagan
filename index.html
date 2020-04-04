@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <script type="module">
+    import ajax from './ajax.js'
+    import getType from './getType.js'
+    const domBtn = document.querySelector('#btn')
+    domBtn.onclick = async function () {
+      const res = await ajax({
+        url: 'https://www.easy-mock.com/mock/597e7bb7a1d30433d842015f/axios/putPeople',
+        params: { name: 'hagan' },
+        method: 'PUT'
+      })
+      console.log('res: ', res)
+    }
+  </script>
+</body>
+</html>

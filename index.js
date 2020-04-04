@@ -23,6 +23,10 @@ import getBodyHeight from './getBodyHeight'
 import getHtmlLeft from './getHtmlLeft'
 import getHtmlTop from './getHtmlTop'
 import getElementSizeInfo from './getElementSizeInfo'
+import postWindow from "./postWindow"
+import getQueryStringFromParams from "./getQueryStringFromParams"
+import ajax from './ajax'
+import getType from './getType'
 
 const hagan = { // fnHideDom fnShowDom
   _rely,
@@ -50,23 +54,10 @@ const hagan = { // fnHideDom fnShowDom
   getHtmlLeft,
   getHtmlTop,
   getElementSizeInfo,
-
-  //向url中添加查询字符串
-  fnUrlToQueryString(sUrl, sKey, sValue) {
-    if (typeof sUrl === "string" && typeof sKey === "string" && typeof sValue === "string") {
-
-      if (sUrl.indexOf("?") === -1) {
-        sUrl += "?";
-      } else {
-        sUrl += "&";
-      }
-
-      sUrl += `${encodeURIComponent(sKey)}=${encodeURIComponent(sValue)}`;
-
-      return sUrl;
-
-    }
-  },
+  postWindow,
+  getQueryStringFromParams,
+  ajax,
+  getType,
 
   //得到ajax传参所需格式
   fnGetAjaxStr(jData) {
@@ -82,66 +73,6 @@ const hagan = { // fnHideDom fnShowDom
   },
 
   //ajax封装  hagan.fnAjax({});
-  fnAjax(jOpt) {
-
-    const This = this;
-
-    jOpt.sType = jOpt.sType || "get";
-    jOpt.sDataType === "file" ? jOpt.sType = "post" : jOpt.sType = jOpt.sType;
-    jOpt.sType === "get" ? jOpt.sUrl = `${jOpt.sUrl}?${This.fnGetAjaxStr(jOpt.jData)}` : jOpt.sUrl = jOpt.sUrl;
-    jOpt.sType === "get" ? jOpt.jData = null : jOpt.sDataType === "file" ? jOpt.jData = jOpt.jData : jOpt.jData = This.fnGetAjaxStr(jOpt.jData || "");
-    jOpt.bAsync = jOpt.bAsync || false;
-
-    const oopAjax = new XMLHttpRequest();
-
-    if (jOpt.fnProgress instanceof Function) {//进度条事件
-      oopAjax.onprogress = function (ev) {
-        jOpt.fnProgress(ev.total, ev.loaded);
-      };
-    }
-
-    if (typeof jOpt.nTimeOut === "number") {//设置超时方法
-      oopAjax.timeout = jOpt.nTimeOut;
-      oopAjax.ontimeout = function () {
-        if (jOpt.fnTimeOut instanceof Function) {
-          jOpt.fnTimeOut();
-        }
-      };
-    }
-
-    oopAjax.open(jOpt.sType, jOpt.sUrl, jOpt.bAsync);
-
-    jOpt.sDataType === "file" ? oopAjax.setRequestHeader("contentType", "multipart/form-data") : oopAjax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-
-    oopAjax.send(jOpt.jData);
-
-    if (jOpt.bAsync === true) {
-      oopAjax.onreadystatechange = function () {
-        if (oopAjax.readyState === 4) {
-          fnReceiveData();
-        }
-      };
-    } else if (jOpt.bAsync === false) {
-      fnReceiveData();
-    }
-
-    function fnReceiveData() {
-      if ((oopAjax.status >= 200 && oopAjax.status < 300) || oopAjax.status === 304) {
-        if (jOpt.fnSuccess instanceof Function) {
-          jOpt.fnSuccess(oopAjax.responseText);
-        } else {
-          console.error("hagan.fnAjax:jOpt.fnSuccess can't a Function");
-        }
-      } else {
-        if (jOpt.fnError instanceof Function) {
-          jOpt.fnError(oopAjax.status);
-        } else {
-          console.error("hagan.fnAjax:jOpt.fnError can't a Function");
-        }
-      }
-    }
-
-  },
 
   //根据访问地址决定返回http或https
   fnGetHttpOrHttps(sUrl) {
@@ -347,91 +278,7 @@ const hagan = { // fnHideDom fnShowDom
 
   },
 
-  //检测类型  hagan.fnTypeof(oopFnAjax,FnAjax);  !IE8
-  fnTypeof(opt, fn) {
-
-    let result;
-
-    if (fn) {
-
-      if (fn instanceof Function) {
-        result = opt instanceof fn
-      }
-
-    } else {
-
-      switch (Object.prototype.toString.call(opt)) {
-
-        case "[object Number]":
-
-          if (isNaN(opt)) {
-            result = "NaN";
-          } else if (isFinite(opt)) {
-            result = "Number";
-          } else {
-            result = "Infinity";
-          }
-
-          break;
-        case "[object String]":
-
-          result = "String";
-
-          break;
-        case "[object Null]":
-
-          result = "Null";
-
-          break;
-        case "[object Undefined]":
-
-          result = "Undefined";
-
-          break;
-        case "[object Boolean]":
-
-          result = "Boolean";
-
-          break;
-        case "[object Function]":
-
-          result = "Function";
-
-          break;
-        case "[object Date]":
-
-          result = "Date";
-
-          break;
-        case "[object Array]":
-
-          result = "Array";
-
-          break;
-        case "[object RegExp]":
-
-          result = "RegExp";
-
-          break;
-        case "[object Object]":
-
-          result = "Object";
-
-          break;
-        default:
-
-          console.error("不是原生js类型");
-          result = "Unknown";
-
-          break;
-
-      }
-
-    }
-
-    return result;
-
-  },
+  //检测类型  hagan.getType(oopFnAjax,FnAjax);  !IE8
 
   //异步forEach  hagan.fnAsyncForeach(aOpt,function(item){});  !IE8
   fnAsyncForeach(aOpt, fnProcess, context = null) {
@@ -697,7 +544,7 @@ const hagan = { // fnHideDom fnShowDom
 
   //得到整数
   fnGetInteger(nNum) {
-    if (this.fnTypeof(nNum) === "Number") {
+    if (this.getType(nNum) === "Number") {
       return Math[nNum < 0 ? "ceil" : "floor"](nNum);
     } else {
       console.error(`nNum isn't Number`);
@@ -706,7 +553,7 @@ const hagan = { // fnHideDom fnShowDom
 
   //移除字符串首尾空格
   fnTrim(sString) {
-    if (this.fnTypeof(sString) === "String") {
+    if (this.getType(sString) === "String") {
       return sString.replace(/^\s+|\s+$/g, "");
     }
   },

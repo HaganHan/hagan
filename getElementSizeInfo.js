@@ -13,3 +13,5 @@ const getElementSizeInfo = function (eventElement) {
     "height": boundingClientRect.height
   }
 }
+
+export default getElementSizeInfo
