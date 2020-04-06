@@ -28,6 +28,9 @@ import getQueryStringFromParams from "./getQueryStringFromParams"
 import ajax from './ajax'
 import jsonp from './jsonp'
 import getType from './getType'
+import setInterval from './setInterval'
+import clearInterval from './clearInterval'
+import getBase64FromImageUrl from './getBase64FromImageUrl'
 
 const hagan = { // fnHideDom fnShowDom
   _rely,
@@ -60,77 +63,9 @@ const hagan = { // fnHideDom fnShowDom
   ajax,
   jsonp,
   getType,
-
-  //根据访问地址决定返回http或https
-  fnGetHttpOrHttps(sUrl) {
-    return sUrl.replace(/(http.?\:)(.+)/, (sNative, child1, child2) => {
-      return `${location.protocol}${child2}`
-    });
-  },
-
-  //设置自定义定时器  hagan.fnSetInterval(function nTimer1(){},1000);  !IE10
-  //为了防止后一个调用会在前一个调用结束之前执行, 使用setTimeout模拟setInterval
-  fnSetInterval(fn, nMs, bStatus = true) {
-    if (!fn.name) {
-      console.error("fn.name cannot is null");
-    }
-    const This = this;
-    This._rely.jTimer[fn.name] = true;
-    if (bStatus) {
-      fn()
-    }
-    if (This._rely.jTimer[fn.name]) {
-      clearTimeout(This._rely.jTimer[fn.name]);
-      This._rely.jTimer[fn.name] = setTimeout(function () {
-        fn();
-        if (This._rely.jTimer[fn.name]) {
-          This["fnSetInterval"](fn, nMs, false);
-        }
-      }, nMs);
-    }
-  },
-
-  //清除自定义定时器  hagan.fnSetInterval("nTimer1");  !IE10
-  fnClearInterval(nTimer) {
-    clearTimeout(_rely.jTimer[nTimer]);
-    _rely.jTimer[nTimer] = false;
-  },
-
-  //闭包:返回对应图片的base64  !IE10
-  //const jBase64=hagan.fnGetImageBase64("backImage.jpg");
-  //jBase64["oImage"].onload=()=>{const sBase64=jBase64["fnOnLoad"]()["str"]};
-  fnGetImageBase64(sImageUrl) {//调用该方法返回一个以传入链接创建的一个图片标签和该图片标签的onload事件组成的json
-
-    let sResult = String;
-
-    const oImage = document.createElement("img");
-    oImage.crossOrigin = "Anonymous";
-    oImage.style["verticalAlign"] = "middle";
-    oImage.src = sImageUrl;
-
-    return {
-      "oImage": oImage,
-      "fnOnLoad": function () {//调用该方法返回base64的原始数据和经过处理的str数据组成的json
-
-        const oCanvas = document.createElement("canvas");
-        oCanvas.width = oImage.width;
-        oCanvas.height = oImage.height;
-        const oContext = oCanvas.getContext("2d");
-        oContext.drawImage(oImage, 0, 0, oImage.width, oImage.height);
-        const sSuffix = oImage.src.substring(oImage.src.lastIndexOf(".") + 1).toLowerCase();
-        sResult = oCanvas.toDataURL(`image/${sSuffix}`);
-
-        return {
-          "base64": sResult,
-          "str": sResult.replace(/(data\:image\/png\;)(base64\,)(.+)/, ($0, $1, $2, $3) => {
-            return $3
-          })
-        };
-
-      }
-    }
-
-  },
+  setInterval,
+  clearInterval,
+  getBase64FromImageUrl,
 
   //给元素添加滚轮事件  hagan.fnAddMouseWheel(window,function fn(){},function fn(){});  !IE8
   fnAddMouseWheel(eventElement, fnUp, fnDown, eventCapture = false) {
@@ -520,13 +455,6 @@ const hagan = { // fnHideDom fnShowDom
   //删除存储的数据  hagan.fnDelStorage();  !IE8
   fnDelStorage(sStorageType = localStorage) {
     sStorageType.clear();
-  },
-
-  //动态获取ip地址  mdj.fnGetIp("admin/custom_mark/doSave");
-  fnGetAllIp(sAfterUrl = "") {
-    const pathName = document.location.pathname;
-    const projectName = pathName.substring(0, pathName.substr(1).indexOf("/") + 1) + "/";
-    return this.fnGetHttpOrHttps(`http://${location.host}${projectName}${sAfterUrl}`);
   },
 
   //得到整数

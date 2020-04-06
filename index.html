@@ -7,14 +7,14 @@
 </head>
 <body>
   <button id="btn">按钮</button>
+  <img id="img">
   <script type="module">
-    import ajax from './ajax.js'
-    import getType from './getType.js'
-    import jsonp from './jsonp.js'
+    import getBase64FromImageUrl from './getBase64FromImageUrl.js'
     const domBtn = document.querySelector('#btn')
+    const domImg = document.querySelector("#img")
     domBtn.onclick = async function () {
-      const res = await jsonp("//y.lwt.360.cn/course_list", { name: 'hagan'})
-      console.log('res: ', res)
+    const base64 = await getBase64FromImageUrl('./img.png')
+      domImg.src = base64
     }
   </script>
 </body>
