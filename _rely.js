@@ -5,7 +5,8 @@ const _rely = { // 所有的依赖信息
   _rem: 0, // 存着html标签上的字体大小
   _timerId: 0,
   _timer: {}, // 存着模拟定时器的执行序列
-  jMouseWheel: {}, // 存着所有绑定的滚轮事件
+  _mouseWheelId: 0,
+  _mouseWheel: {}, // 存着所有绑定的滚轮事件
   hideDomInfo: {}, // 元素hide前的display状态
 }
 

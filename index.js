@@ -31,6 +31,10 @@ import getType from './getType'
 import setInterval from './setInterval'
 import clearInterval from './clearInterval'
 import getBase64FromImageUrl from './getBase64FromImageUrl'
+import addMouseWheelEventListener from './addMouseWheelEventListener'
+import removeMouseWheelEventListener from './removeMouseWheelEventListener'
+import getKeyCode from './getKeyCode'
+import beforeUnload from './beforeUnload'
 
 const hagan = { // fnHideDom fnShowDom
   _rely,
@@ -66,42 +70,10 @@ const hagan = { // fnHideDom fnShowDom
   setInterval,
   clearInterval,
   getBase64FromImageUrl,
-
-  //给元素添加滚轮事件  hagan.fnAddMouseWheel(window,function fn(){},function fn(){});  !IE8
-  fnAddMouseWheel(eventElement, fnUp, fnDown, eventCapture = false) {
-    _rely.jMouseWheel[fnUp.name || fnDown.name] = function (ev) {
-      ev.wheelDelta ? (ev.wheelDelta > 0 ? fnUp(ev) : fnDown(ev)) : (ev.detail < 0 ? fnUp(ev) : fnDown(ev));
-    };
-    eventElement.addEventListener("mousewheel", _rely.jMouseWheel[fnUp.name || fnDown.name], eventCapture);
-    eventElement.addEventListener("DOMMouseScroll", _rely.jMouseWheel[fnUp.name || fnDown.name], eventCapture);
-  },
-
-  //移除元素滚轮事件  hagan.fnRemoveMouseWheel(window,"fn");  !IE8
-  fnRemoveMouseWheel(eventElement, sFnName, eventCapture = false) {
-    eventElement.removeEventListener("mousewheel", _rely.jMouseWheel[sFnName], eventCapture);
-    eventElement.removeEventListener("DOMMouseScroll", _rely.jMouseWheel[sFnName], eventCapture);
-  },
-
-  //得到键盘键码  hagan.fnGetKeyCode(ev);  !IE8
-  fnGetKeyCode(ev) {
-    let nResult = ev.keyCode;
-    if (nResult == 186) {
-      nResult = 59;
-    }
-    return nResult;
-  },
-
-  //浏览器关闭事件  hagan.fnOnBeForeUnload("是否关闭？");  !IE10
-  fnOnBeForeUnload(sText, fn) {
-    const fnBeforeUnload = function (ev) {
-      fn();
-      ev.returnValue = sText;
-      return sText;
-    };
-    window.removeEventListener("beforeunload", fnBeforeUnload);
-    window.addEventListener("beforeunload", fnBeforeUnload);
-
-  },
+  addMouseWheelEventListener,
+  removeMouseWheelEventListener,
+  getKeyCode,
+  beforeUnload,
 
   //自定义右键菜单  hagan.fnCustomRightMenu(eUl);  !IE8
   fnCustomRightMenu(eUl, fn) {

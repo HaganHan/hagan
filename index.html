@@ -9,13 +9,13 @@
   <button id="btn">按钮</button>
   <img id="img">
   <script type="module">
-    import getBase64FromImageUrl from './getBase64FromImageUrl.js'
+    import beforeUnload from './beforeUnload.js'
+
     const domBtn = document.querySelector('#btn')
     const domImg = document.querySelector("#img")
-    domBtn.onclick = async function () {
-    const base64 = await getBase64FromImageUrl('./img.png')
-      domImg.src = base64
-    }
+    beforeUnload('guanbi', () => {
+      console.log(2)
+    })
   </script>
 </body>
 </html>
