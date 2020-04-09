@@ -1,7 +1,7 @@
 /**
  * 根据当前设备类型返回对应事件名称
  */
-import getOs from './getOs'
+import getOs from './getOs.js'
 
 const getEventName = function (eventName) {
   const os = getOs()

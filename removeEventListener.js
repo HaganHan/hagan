@@ -3,7 +3,7 @@
  * hagan.removeEventListener(eBtn,"click","fnAlert1")
  * !IE10
  */
-import _rely from './_rely'
+import _rely from './_rely.js'
  
 function removeEventListener (eventId) {
   if (!_rely._eventPool[eventId]) return

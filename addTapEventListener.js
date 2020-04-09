@@ -1,7 +1,7 @@
 /**
  * tap事件封装
  */
-import _rely from './_rely'
+import _rely from './_rely.js'
 
 const addTapEventListener = function (eventId) {
   const { _eventElement, _eventFunction, _eventCapture } = _rely._eventPool[eventId]

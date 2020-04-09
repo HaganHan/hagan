@@ -1,5 +1,7 @@
 /**
  * 获取对象类型
+ * getType('abc') // String
+ * !IE8
  */
 
 const getType = function (target) {

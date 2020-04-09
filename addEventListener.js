@@ -3,9 +3,9 @@
  * hagan.addEventListener(eBtn,"click",function fnAlert1(){})
  * !IE10
  */
-import _rely from './_rely'
-import getEventName from './getEventName'
-import addTapEventListener from './addTapEventListener'
+import _rely from './_rely.js'
+import getEventName from './getEventName.js'
+import addTapEventListener from './addTapEventListener.js'
 
 const addEventListener = function (eventElement, eventName, eventFunction, eventCapture = false) {
   const eventId = _rely._eventId++

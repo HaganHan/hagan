@@ -4,17 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    body {
+      width: 500px;
+      height: 3000px;
+      background-color: #aaa;
+    }
+    .menu {
+      width: 100px;
+      height: 100px;
+      background-color: #0f0;
+    }
+  </style>
 </head>
 <body>
-  <button id="btn">按钮</button>
-  <img id="img">
+  <button id="btn1">按钮1</button>
+  <button id="btn2">按钮2</button>
+  <input id="input1" type="text" />
   <script type="module">
-    import beforeUnload from './beforeUnload.js'
+    import addEventListener from './addEventListener.js'
+    import asyncForEach from './asyncForEach.js'
 
-    const domBtn = document.querySelector('#btn')
-    const domImg = document.querySelector("#img")
-    beforeUnload('guanbi', () => {
-      console.log(2)
+    const domBtn1 = document.querySelector('#btn1')
+    const domBtn2 = document.querySelector('#btn2')
+    const domInput1 = document.querySelector("#input1")
+
+    addEventListener(domBtn1, 'click', async () => {
+      console.log('domBtn1 click')
+      const arr = [1, 2, 3, 4]
+      console.log('start asyncForEach')
+      await asyncForEach(arr, item => {
+        for (let i = 0; i < 10000; i ++) {
+          domInput1.value += i
+        }
+        console.log(item)
+      })
+      console.log('end asyncForEach')
+    })
+
+    addEventListener(domBtn2, 'click', () => {
+      console.log('domBtn2 click1')
     })
   </script>
 </body>

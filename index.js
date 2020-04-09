@@ -35,6 +35,15 @@ import addMouseWheelEventListener from './addMouseWheelEventListener'
 import removeMouseWheelEventListener from './removeMouseWheelEventListener'
 import getKeyCode from './getKeyCode'
 import beforeUnload from './beforeUnload'
+import customRightMenu from './customRightMenu'
+import setLocalStorage from './setLocalStorage'
+import getLocalStorage from './getLocalStorage'
+import removeLocalStorage from './removeLocalStorage'
+import removeDomElement from './removeDomElement'
+import removeAllEventListener from './removeAllEventListener'
+import filterKeyboardInput from './filterKeyboardInput'
+import filterPaste from './filterPaste'
+import asyncForEach from './asyncForEach'
 
 const hagan = { // fnHideDom fnShowDom
   _rely,
@@ -42,6 +51,7 @@ const hagan = { // fnHideDom fnShowDom
   getEventName,
   addTapEventListener,
   removeEventListener,
+  removeAllEventListener,
   getOs,
   triggerEventFunction,
   triggerEvent,
@@ -74,147 +84,14 @@ const hagan = { // fnHideDom fnShowDom
   removeMouseWheelEventListener,
   getKeyCode,
   beforeUnload,
-
-  //自定义右键菜单  hagan.fnCustomRightMenu(eUl);  !IE8
-  fnCustomRightMenu(eUl, fn) {
-    window.addEventListener("contextmenu", function (ev) {
-      fn();
-      ev.preventDefault();
-      eUl.style.top = `${ev.pageY}px`;
-      eUl.style.left = `${ev.pageX}px`;
-      eUl.style.display = "block";
-    });
-    document.documentElement.addEventListener("click", function () {
-      eUl.style.display = "none";
-    });
-  },
-
-  //得到localStorage的key和value  hagan.fnGetStorage(function(key,value){});  !IE8
-  fnGetStorage(fn) {
-    const oStorage = window.localStorage;
-    for (let i = 0, size = oStorage.length; i < size; i++) {
-      fn(oStorage.key(i), oStorage.getItem(oStorage.key(i)));
-    }
-  },
-
-  //获取哈希值  hagan.fnGetHash()  !IE8
-  fnGetHash() {
-    return location.hash.replace(/(\#)(.+)/, function ($0, $1, $2) {
-      return $2;
-    });
-  },
-
-  //移除元素的所有事件处理函数[并删除元素]  hagan.fnRemoveElementAllEvent(eBtn1,true);  !IE10
-  fnRemoveElementAllEvent(eventElement, bDeleteElement = false) {
-    if (!eventElement.id) {
-      console.error(`<${eventElement.nodeName.toLocaleLowerCase()}>.id cannot is null`);
-    }
-    for (let attr in _rely.eventPool[eventElement.id]) {
-      if (_rely.eventPool[eventElement.id][attr].nodeType !== 1 && _rely.eventPool[eventElement.id][attr] !== window) {
-        this.removeEventListener(eventElement, _rely.eventPool[eventElement.id][attr].eventName, attr);
-      }
-    }
-    if (bDeleteElement) {
-      _rely.eventPool[eventElement.id] = null;
-      eventElement.remove();
-    }
-  },
-
-  //移除页面上的所有事件处理函数
-  fnRemoveDocumentAllEvent() {
-    for (let attr in _rely.eventPool) {
-      this.fnRemoveElementAllEvent(_rely.eventPool[attr].eventElement);
-    }
-    _rely.eventPool = null;
-  },
-
-  //排除输入  hagan.fnScreeningInput(eInput,"123");  !IE10
-  fnScreeningInput(eventElement, sExcept) {
-
-    const This = this;
-
-    This.addEventListener(eventElement, "keypress", function fnScreeningInputKeyPress(ev) {
-
-      if (!ev.shiftKey && !ev.ctrlKey && !ev.altKey) {
-
-        if (sExcept.indexOf(String.fromCharCode(ev.charCode)) !== -1) {
-          ev.preventDefault();
-        }
-
-      }
-
-    });
-
-  },
-
-  //排除粘贴  hagan.fnScreeningPaste(eInput,["12","10"],function(){});  !IE10
-  fnScreeningPaste(eventElement, aExcept, fn) {
-
-    const This = this;
-
-    This.addEventListener(eventElement, "paste", function fnScreeningPaste(ev) {
-
-      for (let i = 0, size = aExcept.length; i < size; i++) {
-
-        if (ev.clipboardData.getData("text/plain").indexOf(aExcept[i]) !== -1) {
-
-          ev.preventDefault();
-
-          fn();
-
-          break
-
-        }
-
-      }
-
-    });
-
-  },
-
-  //检测类型  hagan.getType(oopFnAjax,FnAjax);  !IE8
-
-  //异步forEach  hagan.fnAsyncForeach(aOpt,function(item){});  !IE8
-  fnAsyncForeach(aOpt, fnProcess, context = null) {
-
-    const This = this;
-
-    if (aOpt instanceof Array && fnProcess instanceof Function) {
-
-      let nIndex = 0;
-
-      function fn() {
-
-        const nStartTime = +new Date();
-
-        do {
-
-          //取出下一个异步执行的参数
-          const item = aOpt[nIndex];
-
-          fnProcess.call(context, item);
-
-          nIndex++;
-
-        } while (nIndex < aOpt.length && +new Date() - nStartTime < 50);
-
-        if (nIndex < aOpt.length) {
-
-          requestAnimationFrame(fn);
-
-        }
-
-      }
-
-      fn();
-
-    } else {
-
-      console.error("aOpt isn't a Array || fnProcess isn't a Function");
-
-    }
-
-  },
+  customRightMenu,
+  setLocalStorage,
+  getLocalStorage,
+  removeLocalStorage,
+  removeDomElement,
+  filterKeyboardInput,
+  filterPaste,
+  asyncForEach,
 
   //异步执行函数序列  hagan.fnAsyncProcess(aFn);  !IE8
   fnAsyncProcess(aFnProcess, aArguments = []) {
@@ -404,29 +281,6 @@ const hagan = { // fnHideDom fnShowDom
         }
       }
     }
-  },
-
-  //设置存储数据  hagan.fnSetStorage({"username":"303738305","password":{"qq":"123456","wx":"213424"}});  !IE8
-  fnSetStorage(jData, sStorageType = localStorage) {
-    for (let sKey in jData) {
-      sStorageType[sKey] = JSON.stringify(jData[sKey]);
-    }
-  },
-
-  //得到存储的数据  hagan.fnGetStorage(["username"],["password","wx"]);  !IE8
-  fnGetStorage(sStorageType = localStorage) {
-    let result = {};
-    for (let i = 0; i < sStorageType.length; i++) {
-      const sKey = sStorageType.key(i);
-      const sValue = JSON.parse(sStorageType.getItem(sKey));
-      result[sKey] = sValue;
-    }
-    return result
-  },
-
-  //删除存储的数据  hagan.fnDelStorage();  !IE8
-  fnDelStorage(sStorageType = localStorage) {
-    sStorageType.clear();
   },
 
   //得到整数
@@ -681,7 +535,14 @@ const hagan = { // fnHideDom fnShowDom
     } else {
       return false;
     }
-  }
+  },
+
+  //获取哈希值  hagan.fnGetHash()  !IE8
+  fnGetHash() {
+    return location.hash.replace(/(\#)(.+)/, function ($0, $1, $2) {
+      return $2;
+    });
+  },
 
 };
 
