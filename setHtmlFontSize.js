@@ -5,7 +5,7 @@
  */
 import _rely from './_rely'
 import resize from './resize'
-import getWindowWidth from './getWindowWidth'
+import getDocumentWidth from './getDocumentWidth'
 
 const setHtmlFontSize = function () {
   const domHtml = document.querySelector("html")
@@ -13,7 +13,7 @@ const setHtmlFontSize = function () {
   let bodyWidth
 
   resize(() => {
-    bodyWidth = getWindowWidth()
+    bodyWidth = getDocumentWidth()
     _rely._rem = bodyWidth / 10
     domHtml.style.fontSize = `${_rely._rem}px`
     domBody.style.fontSize = `0.4rem`

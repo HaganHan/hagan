@@ -5,9 +5,9 @@
  */
 
 const asyncForEach = function (array = [], process = () => { }, context = null) {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let index = 0
-    const fn = function () {
+    const fn = () => {
       const startTime = Date.now()
 
       do {

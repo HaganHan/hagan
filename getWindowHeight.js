@@ -1,15 +1,12 @@
 /**
- * 得到window总宽度
- * hagan.getWindowWidth()
- * !IE8
+ * 得到视口高度
  */
-
-import resize from './resize'
+import resize from './resize.js'
 
 let getWindowHeight = function () {
   let windowHeight
   resize(() => {
-    windowHeight =  Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight)
+    windowHeight = document.documentElement.clientHeight || window.innerHeight
     getWindowHeight = function () { // 惰性载入函数
       return windowHeight
     }

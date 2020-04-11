@@ -1,15 +1,12 @@
 /**
- * 得到window总宽度
- * hagan.getWindowWidth()
- * !IE8
+ * 得到视口宽度
  */
-
-import resize from './resize'
+import resize from './resize.js'
 
 let getWindowWidth = function () {
   let windowWidth
   resize(() => {
-    windowWidth = Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth)
+    windowWidth = document.documentElement.clientWidth || window.innerWidth
     getWindowWidth = function () { // 惰性载入函数
       return windowWidth
     }

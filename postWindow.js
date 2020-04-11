@@ -1,6 +1,6 @@
 /**
  * post打开页面
- * hagan.getWindowWidth()
+ * hagan.getDocumentWidth()
  * !IE8
  */
 
