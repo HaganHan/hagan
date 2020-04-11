@@ -51,7 +51,6 @@ import asyncForEach from './asyncForEach'
 import setCookie from './setCookie'
 import getCookie from './getCookie'
 import removeCookie from './removeCookie'
-import getInteger from './getInteger'
 import trim from './trim'
 import getImgSizeFromLoad from './getImgSizeFromLoad'
 import getClientX from './getClientX'
@@ -66,6 +65,7 @@ import showDom from './showDom'
 import isVerticalScreen from './isVerticalScreen'
 import isPhoneNumber from './isPhoneNumber'
 import getHash from './getHash'
+import math from './math'
 
 const hagan = {
   _rely,
@@ -120,7 +120,6 @@ const hagan = {
   setCookie,
   getCookie,
   removeCookie,
-  getInteger,
   trim,
   getBlobFromBase64,
   getImgSizeFromLoad,
@@ -136,6 +135,7 @@ const hagan = {
   isVerticalScreen,
   isPhoneNumber,
   getHash,
+  math,
 }
 
 export default hagan

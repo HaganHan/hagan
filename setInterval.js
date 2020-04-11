@@ -7,7 +7,7 @@
 import _rely from './_rely.js'
 
 const setInterval = function (callback, delay, arg = []) {
-  const _timerId = _rely._timerId++
+  const _timerId = Symbol('_timerId');
   (function loop() {
     if (_rely._timer[_timerId] === null) return
     clearTimeout(_rely._timer[_timerId])

@@ -4,8 +4,8 @@
  */
 import _rely from './_rely'
 
-const triggerEventFunction = function (eventId, eventObject) {
-  const { _eventElement, _eventFunction } = _rely._eventPool[eventId]
+const triggerEventFunction = function (_eventId, eventObject) {
+  const { _eventElement, _eventFunction } = _rely._eventPool[_eventId]
   _eventFunction.call(_eventElement, eventObject)
 }
 

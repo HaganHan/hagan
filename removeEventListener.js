@@ -5,19 +5,19 @@
  */
 import _rely from './_rely.js'
  
-function removeEventListener (eventId) {
-  if (!_rely._eventPool[eventId]) return
-  const { _eventElement, _eventName, _eventFunction, _eventCapture } = _rely._eventPool[eventId]
+function removeEventListener (_eventId) {
+  if (!_rely._eventPool[_eventId]) return
+  const { _eventElement, _eventName, _eventFunction, _eventCapture } = _rely._eventPool[_eventId]
   if (_eventName === "tap") {
-    if (_rely._tapEventPool[eventId]) {
-      const { _eventElement, _eventName, _eventFunction, _eventCapture } = _rely._tapEventPool[eventId]
+    if (_rely._tapEventPool[_eventId]) {
+      const { _eventElement, _eventName, _eventFunction, _eventCapture } = _rely._tapEventPool[_eventId]
       _eventElement.removeEventListener(_eventName, _eventFunction, _eventCapture)
-      _rely._tapEventPool[eventId] = null
+      _rely._tapEventPool[_eventId] = null
     }
   } else {
     _eventElement.removeEventListener(_eventName, _eventFunction, _eventCapture)
   }
-  _rely._eventPool[eventId] = null
+  _rely._eventPool[_eventId] = null
 }
 
 export default removeEventListener

@@ -3,8 +3,8 @@
  */
 import _rely from './_rely.js'
 
-const addTapEventListener = function (eventId) {
-  const { _eventElement, _eventFunction, _eventCapture } = _rely._eventPool[eventId]
+const addTapEventListener = function (_eventId) {
+  const { _eventElement, _eventFunction, _eventCapture } = _rely._eventPool[_eventId]
   let moved
   const touchMoveEventFunction = function () {
     moved = false
@@ -21,7 +21,7 @@ const addTapEventListener = function (eventId) {
 
   }
   _eventElement.addEventListener("touchstart", touchStartEventFunction, _eventCapture)
-  _rely._tapEventPool[eventId] = {
+  _rely._tapEventPool[_eventId] = {
     _eventElement,
     _eventName: 'touchstart',
     _eventFunction: touchStartEventFunction,

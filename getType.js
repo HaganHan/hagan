@@ -6,6 +6,9 @@
 
 const getType = function (target) {
   switch (Object.prototype.toString.call(target)) {
+    case '[object Symbol]':
+      return 'Symbol'
+    
     case '[object Number]':
       if (isNaN(target)) return 'NaN'
       if (isFinite(target)) return 'Number'

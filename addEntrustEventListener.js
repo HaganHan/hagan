@@ -6,7 +6,7 @@
 import addEventListener from './addEventListener'
 
 const addEntrustEventListener = function (eventElement, eventName, optionEventFunction, eventCapture = false) {
-  const eventId = addEventListener(eventElement, eventName, function (ev) {
+  const _eventId = addEventListener(eventElement, eventName, function (ev) {
     let targetId = ''
     try {
       targetId = ev.srcElement.id
@@ -19,7 +19,7 @@ const addEntrustEventListener = function (eventElement, eventName, optionEventFu
       }
     })
   }, eventCapture)
-  return eventId
+  return _eventId
 }
 
 export default addEntrustEventListener

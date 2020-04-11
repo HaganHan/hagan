@@ -9,11 +9,11 @@ import removeEventListener from './removeEventListener.js'
 const removeDomElement = function (eventElement) {
   const { _eventPool } = _rely
 
-  Object.keys(_eventPool).forEach(eventId => {
-    if (_eventPool[eventId] === null) return
-    const { _eventElement } = _eventPool[eventId]
+  Object.keys(_eventPool).forEach(_eventId => {
+    if (_eventPool[_eventId] === null) return
+    const { _eventElement } = _eventPool[_eventId]
     if (_eventElement === eventElement) {
-      removeEventListener(eventId)
+      removeEventListener(_eventId)
     }
   })
   eventElement.remove()
