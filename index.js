@@ -66,6 +66,12 @@ import isVerticalScreen from './isVerticalScreen'
 import isPhoneNumber from './isPhoneNumber'
 import getHash from './getHash'
 import math from './math'
+import getStringLength from './getStringLength'
+import getReverseString from './getReverseString'
+import getStringFromCodePoint from './getStringFromCodePoint'
+import getCodePointFromString from './getCodePointFromString'
+import getCloneObject from './getCloneObject'
+import getDeepCloneObject from './getDeepCloneObject'
 
 const hagan = {
   _rely,
@@ -136,6 +142,12 @@ const hagan = {
   isPhoneNumber,
   getHash,
   math,
+  getStringLength,
+  getReverseString,
+  getStringFromCodePoint,
+  getCodePointFromString,
+  getCloneObject,
+  getDeepCloneObject,
 }
 
 export default hagan

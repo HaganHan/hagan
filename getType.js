@@ -45,6 +45,9 @@ const getType = function (target) {
         return 'Object'
       }
 
+    case '[object BigInt]':
+      return 'BigInt'
+
     default:
       return 'Unknown'
   }

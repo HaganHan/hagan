@@ -25,26 +25,45 @@
   <img id="img1" />
   <script type="module">
     import addEventListener from './addEventListener.js'
-    import { add, subtract, multiply, divide, toFixed } from './math.js'
-    import hideDom from './hideDom.js'
-    import showDom from './showDom.js'
+    import getStringLength from './getStringLength.js'
+    import getReverseString from './getReverseString.js'
+    import getCodePointFromString from './getCodePointFromString.js'
+    import getStringFromCodePoint from './getStringFromCodePoint.js'
 
     const domBtn1 = document.querySelector('#btn1')
     const domBtn2 = document.querySelector('#btn2')
     const domInput1 = document.querySelector("#input1")
     const domDiv1 = document.querySelector('#div1')
     const domImg1 = document.querySelector('#img1')
-    console.log('toFixed: ', toFixed(10.525))
+//     console.log('a𠮷啊: ', getStringLength('a𠮷啊'))
+//     console.log('mañana: ', getStringLength('mañana'))
+//     console.log('q̣̇: ', getStringLength('q̣̇'))
+//     console.log('நி: ', getStringLength('நி'))
+//     console.log(
+//       `
+
+
+// Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞:`,
+//       getStringLength(`Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞`),
+//       `
+
+
+//       `
+//     )
+//     console.log('நி: ', getStringLength('நி'))
+//     console.log('👨‍👩‍👧‍👦: ', getStringLength('👨‍👩‍👧‍👦'))
+    // console.log('getReverseString: ', getReverseString('q̣̇'))
+    // console.log(getCodePointFromString('💩'))
+    // console.log(getStringFromCodePoint(128169))
+
+    for (let item of '👨‍👩‍👧‍👦') {
+      console.log(item)
+    }
     const eventIdDomBtnClick = addEventListener(domBtn1, 'click', async () => {
-      console.time('hideDom')
-      await hideDom(domInput1, 1000)
-      console.timeEnd('hideDom')
+      
     })
 
     addEventListener(domBtn2, 'click', async () => {
-      console.time('showDom')
-      await showDom(domInput1, 1000)
-      console.timeEnd('showDom')
     })
   </script>
 </body>
