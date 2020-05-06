@@ -5,65 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    body {
-      width: 500px;
-      height: 3000px;
-      background-color: #aaa;
+    * {
+      padding: 0;
+      margin: 0;
     }
-    .menu {
+    html {
+      width: 1000px;
+      height: 6000px;
+    }
+    body {
+      width: 900px;
+      height: 5000px;
+    }
+    header {
+      height: 4000px;
+    }
+    div {
       width: 100px;
       height: 100px;
-      background-color: #0f0;
+      background-color: #aaa;
     }
   </style>
 </head>
 <body>
-  <button id="btn1">按钮1</button>
-  <button id="btn2">按钮2</button>
-  <input id="input1" type="text" />
-  <div id="div1"></div>
-  <img id="img1" />
+  <header></header>
+  <div></div>
   <script type="module">
     import addEventListener from './addEventListener.js'
-    import getStringLength from './getStringLength.js'
-    import getReverseString from './getReverseString.js'
-    import getCodePointFromString from './getCodePointFromString.js'
-    import getStringFromCodePoint from './getStringFromCodePoint.js'
+    import getElementRectInfo from './getElementRectInfo.js'
 
-    const domBtn1 = document.querySelector('#btn1')
-    const domBtn2 = document.querySelector('#btn2')
-    const domInput1 = document.querySelector("#input1")
-    const domDiv1 = document.querySelector('#div1')
-    const domImg1 = document.querySelector('#img1')
-//     console.log('a𠮷啊: ', getStringLength('a𠮷啊'))
-//     console.log('mañana: ', getStringLength('mañana'))
-//     console.log('q̣̇: ', getStringLength('q̣̇'))
-//     console.log('நி: ', getStringLength('நி'))
-//     console.log(
-//       `
+    const domDiv = document.querySelector('div')
 
-
-// Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞:`,
-//       getStringLength(`Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞`),
-//       `
-
-
-//       `
-//     )
-//     console.log('நி: ', getStringLength('நி'))
-//     console.log('👨‍👩‍👧‍👦: ', getStringLength('👨‍👩‍👧‍👦'))
-    // console.log('getReverseString: ', getReverseString('q̣̇'))
-    // console.log(getCodePointFromString('💩'))
-    // console.log(getStringFromCodePoint(128169))
-
-    for (let item of '👨‍👩‍👧‍👦') {
-      console.log(item)
-    }
-    const eventIdDomBtnClick = addEventListener(domBtn1, 'click', async () => {
-      
-    })
-
-    addEventListener(domBtn2, 'click', async () => {
+    console.log('size: ', getElementRectInfo(document.body))
+    addEventListener(window, 'scroll', function () {
+      console.log('size: ', getElementRectInfo(document.body))
     })
   </script>
 </body>

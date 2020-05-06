@@ -4,7 +4,7 @@
  */
 
 const getCodePointFromString = function (string = '') {
-  return string.codePointAt()
+  return string.codePointAt().toString(16)
 }
 
 export default getCodePointFromString

@@ -71,4 +71,4 @@ export const divide = function (number1, number2, decimalLength = 0) {
   return toFixed(result, decimalLength)
 }
 
-export default { add, subtract, multiply, divide }
+export default { add, subtract, multiply, divide, toFixed }
