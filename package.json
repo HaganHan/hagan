@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hanyonggang/hagan.git"
+    "url": "git+https://github.com/HaganHan/hagan.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hanyonggang/hagan/issues"
+    "url": "https://github.com/HaganHan/hagan/issues"
   },
-  "homepage": "https://github.com/hanyonggang/hagan#readme",
+  "homepage": "https://github.com/HaganHan/hagan#readme",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
