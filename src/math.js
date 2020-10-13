@@ -3,19 +3,12 @@
  */
 
 // 判断number是否为一个整数
-const isInteger = function (number) {
+function isInteger (number) {
   return Math.floor(number) === number
 }
 
-// 四舍五入
-export const toFixed = function (number, decimalLength = 0) {
-  var times = Math.pow(10, decimalLength)
-  var fixed = number * times + 0.5
-  return parseInt(fixed) / times
-}
-
 // 将一个浮点数转成整数，返回整数和倍数
-const toInteger = function (floatNumber) {
+function toInteger (floatNumber) {
   const numberInfo = { times: 1, number: 0 }
   const isNegative = floatNumber < 0
   if (isInteger(floatNumber)) {
@@ -31,8 +24,15 @@ const toInteger = function (floatNumber) {
   return numberInfo
 }
 
+// 四舍五入
+export function toFixed (number, decimalLength = 0) {
+  var times = Math.pow(10, decimalLength)
+  var fixed = number * times + 0.5
+  return parseInt(fixed) / times
+}
+
 // 加
-export const add = function (number1, number2, decimalLength = 0) {
+export function add (number1, number2, decimalLength = 0) {
   const { number: num1, times: times1 } = toInteger(number1)
   const { number: num2, times: times2 } = toInteger(number2)
   const maxTimes = Math.max(times1, times2)
@@ -44,7 +44,7 @@ export const add = function (number1, number2, decimalLength = 0) {
 }
 
 // 减
-export const subtract = function (number1, number2, decimalLength = 0) {
+export function subtract (number1, number2, decimalLength = 0) {
   const { number: num1, times: times1 } = toInteger(number1)
   const { number: num2, times: times2 } = toInteger(number2)
   const maxTimes = Math.max(times1, times2)
@@ -56,7 +56,7 @@ export const subtract = function (number1, number2, decimalLength = 0) {
 }
 
 // 乘
-export const multiply = function (number1, number2, decimalLength = 0) {
+export function multiply (number1, number2, decimalLength = 0) {
   const { number: num1, times: times1 } = toInteger(number1)
   const { number: num2, times: times2 } = toInteger(number2)
   const result = (num1 * num2) / (times1 * times2)
@@ -64,7 +64,7 @@ export const multiply = function (number1, number2, decimalLength = 0) {
 }
 
 // 除
-export const divide = function (number1, number2, decimalLength = 0) {
+export function divide (number1, number2, decimalLength = 0) {
   const { number: num1, times: times1 } = toInteger(number1)
   const { number: num2, times: times2 } = toInteger(number2)
   const result = (num1 / num2) * (times2 / times1)
