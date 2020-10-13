@@ -1,3 +1,6 @@
+/**
+ * 队列
+ */
 
 class Queue {
   constructor () {
