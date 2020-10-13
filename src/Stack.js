@@ -1,5 +1,6 @@
 /**
- * 封装栈
+ * 栈
+ * 先进后出，后进先出，类似子弹上膛
  */
 const _weakMap = new WeakMap()
 const _data = {}

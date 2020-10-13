@@ -1,9 +1,8 @@
 /**
- * 队列
- * 先进先出，后进后出，类似排队、下雨
+ * 双端队列
+ * 先进可以先出也可以后出，不限制自由
  */
-
-class Queue {
+class Deque {
   constructor () {
     this._frontIndex = 0
     this._backIndex = 0
@@ -15,20 +14,42 @@ class Queue {
   isEmpty () {
     return this.size() === 0
   }
-  enqueue (element) {
+  addFront (element) {
+    if (this.isEmpty()) return this.addBack(element)
+
+    if (this._frontIndex > 0) {
+      this._frontIndex--
+      this._data[this._frontIndex] = element
+    } else {
+      for (let i = this._backIndex; i > 0; i--) {
+        this._data[i] = this._data[i - 1]
+      }
+      this._backIndex++
+      this._frontIndex = 0
+      this._data[0] = element
+    }
+  }
+  addBack (element) {
     this._data[this._backIndex] = element
     this._backIndex++
   }
-  dequeue () {
-    if (this.isEmpty()) return undefined
+  removeFront () {
     const result = this._data[this._frontIndex]
     delete this._data[this._frontIndex]
     this._frontIndex++
     return result
   }
-  peek () {
-    if (this.isEmpty()) return undefined
+  removeBack () {
+    const result = this._data[this._backIndex]
+    delete this._data[this._backIndex]
+    this._backIndex--
+    return result
+  }
+  peekFront () {
     return this._data[this._frontIndex]
+  }
+  peekBack () {
+    return this._data[this._backIndex]
   }
   clear () {
     this._frontIndex = 0
@@ -44,5 +65,3 @@ class Queue {
     return string
   }
 }
-
-export default Queue
