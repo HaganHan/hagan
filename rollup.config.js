@@ -4,7 +4,7 @@ import { uglify } from 'rollup-plugin-uglify'
 
 export default [
   {
-    input: 'src/index.js',
+    input: 'src/hagan.js',
     output: [
       {
         file: 'dist/hagan.min.js',
@@ -19,7 +19,7 @@ export default [
     ]
   },
   {
-    input: 'src/index.js',
+    input: 'src/hagan.js',
     output: [
       {
         file: 'dist/hagan.js',

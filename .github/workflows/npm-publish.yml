@@ -16,7 +16,7 @@ jobs:
         run: yarn install
 
       - name: build # 编译
-        run: yarn rollup
+        run: yarn build:rollup
 
   deploy:
     needs: build

@@ -66,8 +66,8 @@ import getStringFromCodePoint from './getStringFromCodePoint'
 import getCodePointFromString from './getCodePointFromString'
 import getCloneObject from './getCloneObject'
 import getDeepCloneObject from './getDeepCloneObject'
-// import Stack from './Stack'
-// import decimalismTo from './decimalismTo'
+import Stack from './Stack'
+import decimalismTo from './decimalismTo'
 
 const hagan = {
   _rely,
@@ -138,8 +138,8 @@ const hagan = {
   getCodePointFromString,
   getCloneObject,
   getDeepCloneObject,
-  // Stack,
-  // decimalismTo
+  Stack,
+  decimalismTo
 }
 
 export default hagan
