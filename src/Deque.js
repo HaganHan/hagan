@@ -65,3 +65,5 @@ class Deque {
     return string
   }
 }
+
+export default Deque
