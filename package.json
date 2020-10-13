@@ -1,0 +1,28 @@
+{
+  "name": "hagan",
+  "version": "0.0.1",
+  "description": "一个js工具库",
+  "main": "dist/hagan.js",
+  "scripts": {
+    "rollup": "rm -rf ./dist; rollup -c;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaganHan/hagan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HaganHan/hagan/issues"
+  },
+  "homepage": "https://github.com/HaganHan/hagan#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "lodash": "^4.17.20",
+    "rollup": "^2.29.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  }
+}
