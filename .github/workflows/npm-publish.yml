@@ -38,7 +38,7 @@ jobs:
 
       - name: version # 获取正确版本号
         run: |
-          npm info @hagan/vue-router version > .version
+          npm info hagan version > .version
           node ./updatePackageVersion.js
           git add .
           git commit -m "update package version"
