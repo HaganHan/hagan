@@ -69,6 +69,7 @@ import getDeepCloneObject from './getDeepCloneObject'
 import Stack from './Stack'
 import decimalismTo from './decimalismTo'
 import Queue from './Queue'
+import Deque from './Deque'
 
 const hagan = {
   _rely,
@@ -141,7 +142,8 @@ const hagan = {
   getDeepCloneObject,
   Stack,
   decimalismTo,
-  Queue
+  Queue,
+  Deque
 }
 
 export default hagan
