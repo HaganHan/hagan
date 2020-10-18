@@ -4,7 +4,7 @@
  */
 import LinkedList, { LinkedNode, defaultEquals } from './LinkedList'
 
-class DoublyNode extends LinkedNode {
+export class DoublyNode extends LinkedNode {
   constructor (element) {
     super(element)
     this.prev = null
