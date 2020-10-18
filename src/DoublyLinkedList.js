@@ -2,7 +2,7 @@
  * 双向链表
  * 普通链表的node节点只有向下一个node节点的链接，而双向列表在此基础上增加了向上一个node节点的链接
  */
-import { LinkedNode, defaultEquals } from './LinkedList'
+import LinkedList, { LinkedNode, defaultEquals } from './LinkedList'
 
 class DoublyNode extends LinkedNode {
   constructor (element) {
