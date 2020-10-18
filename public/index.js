@@ -1,2 +1,7 @@
 import hagan from '../src/hagan'
-console.log(new hagan.Queue())
+const linkedList = new hagan.LinkedList()
+linkedList.push('a')
+linkedList.push('b')
+linkedList.push('c')
+console.log(linkedList.remove('a'))
+console.log(linkedList)

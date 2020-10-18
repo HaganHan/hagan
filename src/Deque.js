@@ -4,62 +4,64 @@
  */
 class Deque {
   constructor () {
-    this._frontIndex = 0
-    this._backIndex = 0
+    this._firstIndex = 0
+    this._lastIndex = 0
     this._data = {}
   }
   size () {
-    return this._backIndex - this._frontIndex
+    return this._lastIndex - this._firstIndex
   }
   isEmpty () {
     return this.size() === 0
   }
-  addFront (element) {
-    if (this.isEmpty()) return this.addBack(element)
+  unshift (element) {
+    if (this.isEmpty()) return this.push(element)
 
-    if (this._frontIndex > 0) {
-      this._frontIndex--
-      this._data[this._frontIndex] = element
+    if (this._firstIndex > 0) {
+      this._firstIndex--
+      this._data[this._firstIndex] = element
     } else {
-      for (let i = this._backIndex; i > 0; i--) {
+      for (let i = this._lastIndex; i > 0; i--) {
         this._data[i] = this._data[i - 1]
       }
-      this._backIndex++
-      this._frontIndex = 0
+      this._lastIndex++
+      this._firstIndex = 0
       this._data[0] = element
     }
+    return element
   }
-  addBack (element) {
-    this._data[this._backIndex] = element
-    this._backIndex++
-  }
-  removeFront () {
-    const result = this._data[this._frontIndex]
-    delete this._data[this._frontIndex]
-    this._frontIndex++
+  shift () {
+    const result = this._data[this._firstIndex]
+    delete this._data[this._firstIndex]
+    this._firstIndex++
     return result
   }
-  removeBack () {
-    const result = this._data[this._backIndex]
-    delete this._data[this._backIndex]
-    this._backIndex--
+  peekHead () {
+    return this._data[this._firstIndex]
+  }
+  push (element) {
+    this._data[this._lastIndex] = element
+    this._lastIndex++
+    return element
+  }
+  pop () {
+    const result = this._data[this._lastIndex]
+    delete this._data[this._lastIndex]
+    this._lastIndex--
     return result
   }
-  peekFront () {
-    return this._data[this._frontIndex]
-  }
-  peekBack () {
-    return this._data[this._backIndex]
+  peekTail () {
+    return this._data[this._lastIndex]
   }
   clear () {
-    this._frontIndex = 0
-    this._backIndex = 0
+    this._firstIndex = 0
+    this._lastIndex = 0
     this._data = {}
   }
   toString () {
     if (this.isEmpty()) return undefined
-    let string = this._data[this._frontIndex].toString()
-    for (let i = this._frontIndex + 1; i < this._backIndex; i++) {
+    let string = this._data[this._firstIndex].toString()
+    for (let i = this._firstIndex + 1; i < this._lastIndex; i++) {
       string += `,${this._data[i]}`
     }
     return string

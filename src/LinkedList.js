@@ -4,11 +4,11 @@
  * 宝藏1里存着宝藏2的地点，宝藏2存着宝藏3的地点，想要找到宝藏3必须先从第一个开始找
  */
 
-function defaultEquals (a, b) {
+export function defaultEquals (a, b) {
   return a === b
 }
 
-class Node {
+export class LinkedNode {
   constructor (element) {
     this.element = element
     this.next = null
@@ -30,32 +30,67 @@ class LinkedList {
     return currentNode
   }
   push (element) {
-    const node = new Node(element)
-    let currentNode
-    if (!this._head) {
+    const node = new LinkedNode(element)
+    if (this.isEmpty()) {
       this._head = node
     } else {
-      currentNode = this._head
-      while (currentNode.next) {
-        currentNode = currentNode.next
-      }
-      currentNode.next = node
+      const lastNode = this.getNodeAt(this.size() - 1)
+      lastNode.next = node
     }
     this._length++
+    return element
+  }
+  pop () {
+    const lastNode = this.getNodeAt(this.size() - 1)
+    if (this.size() === 1) {
+      this._head = null
+    } else {
+      const penultimateNode = this.getNodeAt(this.size() - 2)
+      penultimateNode.next = null
+    }
+    this._length--
+    return lastNode.element
+  }
+  peekTail () {
+    return this.getNodeAt(this.size () - 1).element
+  }
+  unshift (element) {
+    const node = new LinkedNode(element)
+    if (this.isEmpty()) {
+      this._head = node
+    } else {
+      const firstNode = this._head
+      node.next = firstNode
+      this._head = node
+    }
+    this._length++
+    return element
+  }
+  shift () {
+    const firstNode = this._head
+    if (this.size() === 1) {
+      this._head = null
+    } else {
+      this._head = firstNode.next
+    }
+    this._length--
+    return firstNode.element
+  }
+  peekHead () {
+    return this._head.element
   }
   insert (element, index) {
     if (index < 0 || index > this.size()) return false
-    const node = new Node(element)
+    const node = new LinkedNode(element)
     if (index === 0) {
-      node.next = this._head
-      this._head = node
-      return true
+      this.unshift(element)
+    } else {
+      const previousNode = this.getNodeAt(index - 1)
+      const nextNode = previousNode.next
+      previousNode.next = node
+      node.next = nextNode
+      this._length++
     }
-    const previousNode = this.getNodeAt(index - 1)
-    const nextNode = previousNode.next
-    previousNode.next = node
-    node.next = nextNode
-    this._length++
     return true
   }
   indexOf (element) {
@@ -75,8 +110,8 @@ class LinkedList {
       let previousNode = this.getNodeAt(index - 1)
       let nextNode = this.getNodeAt(index + 1)
       previousNode.next = nextNode
+      this._length--
     }
-    this._length--
     return currentNode.element
   }
   remove (element) {
@@ -88,9 +123,6 @@ class LinkedList {
   }
   isEmpty () {
     return this.size() === 0
-  }
-  getHead () {
-    return this._head
   }
   toString () {
     if (this.isEmpty()) return ''

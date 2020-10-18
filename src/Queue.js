@@ -18,6 +18,7 @@ class Queue {
   enqueue (element) {
     this._data[this._backIndex] = element
     this._backIndex++
+    return element
   }
   dequeue () {
     if (this.isEmpty()) return undefined

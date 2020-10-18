@@ -71,6 +71,7 @@ import decimalismTo from './decimalismTo'
 import Queue from './Queue'
 import Deque from './Deque'
 import LinkedList from './LinkedList'
+import DoublyLinkedList from './DoublyLinkedList'
 
 const hagan = {
   _rely,
@@ -145,7 +146,8 @@ const hagan = {
   decimalismTo,
   Queue,
   Deque,
-  LinkedList
+  LinkedList,
+  DoublyLinkedList
 }
 
 export default hagan

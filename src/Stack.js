@@ -16,6 +16,7 @@ class Stack {
     const length = _weakMap.get(_length)
     data[length] = element
     _weakMap.set(_length, length + 1)
+    return element
   }
   pop () {
     if (this.isEmpty()) return undefined
