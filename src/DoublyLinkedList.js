@@ -4,7 +4,7 @@
  */
 import LinkedList, { LinkedNode, defaultEquals } from './LinkedList'
 
-export class DoublyNode extends LinkedNode {
+export class DoublyLinkedNode extends LinkedNode {
   constructor (element) {
     super(element)
     this.prev = null
@@ -17,7 +17,7 @@ class DoublyLinkedList extends LinkedList {
     this._tail = null
   }
   push (element) {
-    const node = new DoublyNode(element)
+    const node = new DoublyLinkedNode(element)
     if (this.isEmpty()) {
       this._head = node
       this._tail = node
@@ -47,7 +47,7 @@ class DoublyLinkedList extends LinkedList {
     return this._tail
   }
   unshift (element) {
-    const node = new DoublyNode(element)
+    const node = new DoublyLinkedNode(element)
     if (this.isEmpty()) {
       this._head = node
       this._tail = node
@@ -78,7 +78,7 @@ class DoublyLinkedList extends LinkedList {
   }
   insert (element, index) {
     if (index < 0 || index > this.size()) return false
-    const node = new DoublyNode(element)
+    const node = new DoublyLinkedNode(element)
     if (index === 0) {
       this.unshift(element)
     } else if (index === this.size()) {
