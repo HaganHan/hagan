@@ -72,6 +72,7 @@ import Queue from './Queue'
 import Deque from './Deque'
 import LinkedList from './LinkedList'
 import DoublyLinkedList from './DoublyLinkedList'
+import CircularLinkedList from './CircularLinkedList'
 
 const hagan = {
   _rely,
@@ -147,7 +148,8 @@ const hagan = {
   Queue,
   Deque,
   LinkedList,
-  DoublyLinkedList
+  DoublyLinkedList,
+  CircularLinkedList
 }
 
 export default hagan
