@@ -84,6 +84,8 @@ class LinkedList {
     const node = new LinkedNode(element)
     if (index === 0) {
       this.unshift(element)
+    } else if (index === this.size() - 1) {
+      this.push(element)
     } else {
       const previousNode = this.getNodeAt(index - 1)
       const nextNode = previousNode.next
@@ -103,12 +105,14 @@ class LinkedList {
   }
   removeAt (index) {
     if (index < 0 || index >= this.size()) return undefined
-    let currentNode = this._head
+    let currentNode = this.getNodeAt(index)
     if (index === 0) {
-      this._head = currentNode.next
+      this.shift()
+    } else if (index === this.size() - 1) {
+      this.pop()
     } else {
       let previousNode = this.getNodeAt(index - 1)
-      let nextNode = this.getNodeAt(index + 1)
+      let nextNode = currentNode.next
       previousNode.next = nextNode
       this._length--
     }

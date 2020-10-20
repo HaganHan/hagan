@@ -53,6 +53,22 @@ class CircularLinkedList extends LinkedList {
     this._length--
     return firstNode.element
   }
+  removeAt (index) {
+    if (index < 0 || index >= this.size()) return
+    const currentNode = this.getNodeAt(index)
+    if (index === 0) {
+      this.shift()
+    } else if (index === this.size() - 1) {
+      this.pop()
+    } else {
+      const previousNode = this.getNodeAt(index - 1)
+      const nextNode = currentNode.next
+
+      previousNode.next = nextNode
+      this._length--
+    }
+    return currentNode.element
+  }
 }
 
 export default CircularLinkedList
