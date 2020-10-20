@@ -74,6 +74,7 @@ import LinkedList from './LinkedList'
 import DoublyLinkedList from './DoublyLinkedList'
 import CircularLinkedList from './CircularLinkedList'
 import DoublyCircularLinkedList from './DoublyCircularLinkedList'
+import SortedLinkedList from './SortedLinkedList'
 
 const hagan = {
   _rely,
@@ -151,7 +152,8 @@ const hagan = {
   LinkedList,
   DoublyLinkedList,
   CircularLinkedList,
-  DoublyCircularLinkedList
+  DoublyCircularLinkedList,
+  SortedLinkedList
 }
 
 export default hagan
