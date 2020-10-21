@@ -84,7 +84,7 @@ class LinkedList {
     const node = new LinkedNode(element)
     if (index === 0) {
       this.unshift(element)
-    } else if (index === this.size() - 1) {
+    } else if (index === this.size()) {
       this.push(element)
     } else {
       const previousNode = this.getNodeAt(index - 1)

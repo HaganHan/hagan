@@ -1,3 +1,16 @@
 import hagan from '../src/hagan'
 const sortedLinkedList = new hagan.SortedLinkedList()
+
+sortedLinkedList.insert(23)
+sortedLinkedList.insert(19)
+sortedLinkedList.insert(9)
+sortedLinkedList.insert(87)
+sortedLinkedList.insert(45)
+sortedLinkedList.insert('a')
+sortedLinkedList.insert('b')
+sortedLinkedList.insert('a')
+sortedLinkedList.insert('d')
+sortedLinkedList.insert('e')
+sortedLinkedList.insert('c')
+sortedLinkedList.insert('e')
 console.log(sortedLinkedList)

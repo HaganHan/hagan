@@ -19,11 +19,20 @@ class SortedLinkedList extends LinkedList {
     super(equalsFn)
     this.compareFn = compareFn
   }
-  insert (element, index = 0) { // TODO: 还没写完
-    if (this.isEmpty()) {
-      this.unshift(element)
+  getIndexNextSortedElement (element) {
+    let current = this._head
+    let index = 0
+    for (; index < this.size(); index++) {
+      const compare = this.compareFn(element, current.element)
+      if (compare === Compare.LESS_THAN) return index
+      current = current.next
     }
-    this._length++
+    return index
+  }
+  insert (element) { // TODO: 还没写完
+    if (this.isEmpty()) return super.insert(element, 0)
+    const index = this.getIndexNextSortedElement(element)
+    return super.insert(element, index)
   }
 }
 
