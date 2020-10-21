@@ -1,7 +1,7 @@
 /**
  * 有序链表
+ * 使用排序算法将元素进行排序
  */
-import { times } from 'lodash'
 import LinkedList, { defaultEquals } from './LinkedList'
 
 const Compare = {
@@ -29,11 +29,12 @@ class SortedLinkedList extends LinkedList {
     }
     return index
   }
-  insert (element) { // TODO: 还没写完
+  insert (element) {
     if (this.isEmpty()) return super.insert(element, 0)
     const index = this.getIndexNextSortedElement(element)
     return super.insert(element, index)
   }
+  // 没找到可以阻止push、unshift被调用的办法，因此使用push、unshift便会打破排序规则
 }
 
 export default SortedLinkedList
