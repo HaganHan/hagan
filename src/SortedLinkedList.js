@@ -46,7 +46,7 @@ class SortedLinkedList extends LinkedList {
         this._head = node
         node.next = firstNode
       } else if (index === this.size()) {
-        const lastNode = this.getNodeAt(index)
+        const lastNode = this.getNodeAt(index -1)
         lastNode.next = node
       } else {
         const previousNode = this.getNodeAt(index - 1)
