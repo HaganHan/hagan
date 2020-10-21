@@ -2,7 +2,7 @@
  * 有序链表
  * 使用排序算法将元素进行排序
  */
-import LinkedList, { defaultEquals } from './LinkedList'
+import LinkedList, { defaultEquals, LinkedNode } from './LinkedList'
 
 const Compare = {
   LESS_THAN: -1,
@@ -29,12 +29,26 @@ class SortedLinkedList extends LinkedList {
     }
     return index
   }
-  insert (element) {
-    if (this.isEmpty()) return super.insert(element, 0)
-    const index = this.getIndexNextSortedElement(element)
-    return super.insert(element, index)
+  push (element) {
+    this.insert(element)
   }
-  // 没找到可以阻止push、unshift被调用的办法，因此使用push、unshift便会打破排序规则
+  unshift (element) {
+    this.insert(element)
+  }
+  insert (element) {
+    const node = new LinkedNode(element)
+    if (this.isEmpty()) {
+      this._head = node
+    } else {
+      const index = this.getIndexNextSortedElement(element)
+      const previousNode = this.getNodeAt(index - 1)
+      const nextNode = previousNode.next
+      previousNode.next = node
+      node.next = nextNode
+    }
+    this._length++
+    return true
+  }
 }
 
 export default SortedLinkedList

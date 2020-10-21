@@ -22,7 +22,7 @@ class DoublyLinkedList extends LinkedList {
       this._head = node
       this._tail = node
     } else {
-      const lastNode = this.getNodeAt(this.size() - 1)
+      const lastNode = this._tail
       lastNode.next = node
       node.prev = lastNode
       this._tail = node
@@ -44,7 +44,7 @@ class DoublyLinkedList extends LinkedList {
     return lastNode.element
   }
   peekTail () {
-    return this._tail
+    return this._tail.element
   }
   unshift (element) {
     const node = new DoublyLinkedNode(element)
@@ -74,7 +74,7 @@ class DoublyLinkedList extends LinkedList {
     return firstNode.element
   }
   peekHead () {
-    return this._head
+    return this._head.element
   }
   insert (element, index) {
     if (index < 0 || index > this.size()) return false
@@ -102,10 +102,11 @@ class DoublyLinkedList extends LinkedList {
     } else if (index === this.size() - 1) {
       this.pop()
     } else {
-      const frontNode = this.getNodeAt(index - 1)
-      const backNode = this.getNodeAt(index + 1)
-      frontNode.next = backNode
-      backNode.prev = frontNode
+      const previousNode = node.prev
+      const nextNode = node.next
+
+      previousNode.next = nextNode
+      nextNode.prev = previousNode
       this._length--
     }
     return node.element
