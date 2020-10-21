@@ -5,7 +5,7 @@
  */
 import DoublyLinkedList from './DoublyLinkedList'
 
-class StackDoublyLinkedList { // TODO
+class StackDoublyLinkedList {
   constructor () {
     this._data = new DoublyLinkedList()
   }
@@ -22,7 +22,7 @@ class StackDoublyLinkedList { // TODO
     return this._data.isEmpty()
   }
   size () {
-    return this._data._length
+    return this._data.size()
   }
   clear () {
     this._data.clear()
