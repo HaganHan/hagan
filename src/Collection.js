@@ -5,8 +5,11 @@
  */
 
 class Collection {
-  constructor () {
+  constructor (data) {
     this._data = {}
+    ;[...data].forEach(item => {
+      this._data[item] = item
+    })
   }
   has (element) {
     return this._data.hasOwnProperty(element)
