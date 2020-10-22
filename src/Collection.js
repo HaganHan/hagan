@@ -1,9 +1,10 @@
 /**
  * 集合
  * 一种既没有重复元又有没有顺序概念的数组
+ * 类似Set类
  */
 
-class Set {
+class Collection {
   constructor () {
     this._data = {}
   }
@@ -30,13 +31,13 @@ class Set {
     return Object.values(this._data)
   }
   union (set) { // 并集
-    const unionSet = new Set()
+    const unionSet = new Collection()
     this.values().forEach(item => unionSet.add(item))
     set.values().forEach(item => unionSet.add(item))
     return unionSet
   }
   intersection (set) { // 交集
-    const intersectionSet = new Set()
+    const intersectionSet = new Collection()
     if (this.size() <= set.size()) {
       this.values().forEach(item => {
         if (set.has(item)) intersectionSet.add(item)
@@ -49,7 +50,7 @@ class Set {
     return intersectionSet
   }
   difference (set) { // 差集
-    const differenceSet = new Set()
+    const differenceSet = new Collection()
     this.values().forEach(item => {
       if (!set.has(item)) differenceSet.add(item)
     })
@@ -64,4 +65,4 @@ class Set {
   }
 }
 
-export default Set
+export default Collection

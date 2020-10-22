@@ -1,5 +1,5 @@
 import hagan from '../src/hagan'
-const set1 = new hagan.Set()
+const set1 = new hagan.Collection()
 set1.add('a')
 set1.add('b')
 set1.add('c')
@@ -8,7 +8,7 @@ set1.add('e')
 set1.add('f')
 console.log('set1: ', set1)
 
-const set2 = new hagan.Set()
+const set2 = new hagan.Collection()
 set2.add('e')
 set2.add('f')
 set2.add('g')
@@ -35,11 +35,11 @@ console.log('differenceSet: ', differenceSet)
 /**
  * 子集
  */
-const set3 = new hagan.Set()
+const set3 = new hagan.Collection()
 set3.add('a')
 set3.add('b')
 set3.add('c')
-const set4 = new hagan.Set()
+const set4 = new hagan.Collection()
 set4.add('a')
 set4.add('b')
 set4.add('c')
