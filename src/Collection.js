@@ -24,7 +24,7 @@ class Collection {
   clear () {
     this._data = {}
   }
-  size () {
+  get size () {
     return Object.keys(this._data).length
   }
   values () {
