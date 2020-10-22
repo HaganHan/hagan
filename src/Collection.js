@@ -5,7 +5,7 @@
  */
 
 class Collection {
-  constructor (data) {
+  constructor (data = []) {
     this._data = {}
     ;[...data].forEach(item => {
       this._data[item] = item
