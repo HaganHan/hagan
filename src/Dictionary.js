@@ -2,6 +2,7 @@
  * 字典
  * 也叫映射、符号表、关联数组
  * 以key: value形式储存元素
+ * 类似Map类，可在没有Map类时使用Dictionary类
  */
 function toString (data) {
   if (typeof data === 'string') return data
@@ -24,8 +25,8 @@ class Dictionary {
     this._table = {}
   }
   hasKey (key) {
-    const tableKey = typeof key === 'string' ? key : toString(key)
-    return this._table[tableKey] != null
+    const tableKey = toString(key)
+    return this._table[tableKey] instanceof ValuePair
   }
   set (key, value) {
     if (key == null || value == null) return false
@@ -74,5 +75,11 @@ class Dictionary {
     return result
   }
 }
+
+
+/**
+ * 散列表
+ * 尽可能快的在数据结构中找到一个值
+ */
 
 export default Dictionary

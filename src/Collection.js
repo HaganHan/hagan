@@ -1,7 +1,7 @@
 /**
  * 集合
  * 一种既没有重复元又有没有顺序概念的数组
- * 类似Set类
+ * 类似Set类，可在没有Set类时使用Collection类
  */
 
 class Collection {
