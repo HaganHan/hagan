@@ -78,6 +78,7 @@ import SortedLinkedList from './SortedLinkedList'
 import StackDoublyLinkedList from './StackDoublyLinkedList'
 import Collection from './Collection'
 import SetMath from './SetMath'
+import Dictionary from './Dictionary'
 
 const hagan = {
   _rely,
@@ -159,7 +160,8 @@ const hagan = {
   SortedLinkedList,
   StackDoublyLinkedList,
   Collection,
-  SetMath
+  SetMath,
+  Dictionary
 }
 
 export default hagan
