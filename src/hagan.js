@@ -79,6 +79,9 @@ import StackDoublyLinkedList from './StackDoublyLinkedList'
 import Collection from './Collection'
 import SetMath from './SetMath'
 import Dictionary from './Dictionary'
+import toString from './toString'
+import HashTable from './HashTable'
+import bigInt from './bigInt'
 
 const hagan = {
   _rely,
@@ -161,7 +164,10 @@ const hagan = {
   StackDoublyLinkedList,
   Collection,
   SetMath,
-  Dictionary
+  Dictionary,
+  toString,
+  HashTable,
+  bigInt
 }
 
 export default hagan

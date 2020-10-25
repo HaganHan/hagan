@@ -38,15 +38,15 @@ const getType = function (target) {
     case '[object RegExp]':
       return 'RegExp'
 
+    case '[object BigInt]':
+      return 'BigInt'
+
     case '[object Object]':
       try {
         return target.constructor.name || 'Object'
       } catch (err) {
         return 'Object'
       }
-
-    case '[object BigInt]':
-      return 'BigInt'
 
     default:
       return 'Unknown'

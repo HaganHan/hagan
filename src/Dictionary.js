@@ -4,13 +4,9 @@
  * 以key: value形式储存元素
  * 类似Map类，可在没有Map类时使用Dictionary类
  */
-function toString (data) {
-  if (typeof data === 'string') return data
-  else if (data instanceof Object) return JSON.stringify(data)
-  return String(data)
-}
+import toString from './toString'
 
-class ValuePair {
+export class ValuePair {
   constructor (key, value) {
     this.key = key
     this.value = value
@@ -75,11 +71,5 @@ class Dictionary {
     return result
   }
 }
-
-
-/**
- * 散列表
- * 尽可能快的在数据结构中找到一个值
- */
 
 export default Dictionary

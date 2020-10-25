@@ -1,5 +1,9 @@
 import hagan from '../src/hagan'
-const dictionary = new hagan.Dictionary()
-dictionary.set('a', 'f')
-dictionary.set('b', 'f')
-console.log(dictionary.hasKey('a'))
+
+const maxNumber = Number.MAX_SAFE_INTEGER
+const minNumber = Number.MIN_SAFE_INTEGER
+
+console.log(hagan.math.add(
+  '9007199254740991.00000000000000000000000000000000000000000000000000000000000000000000001',
+  '9007199254740991.00000000000000000000000000000000000000000000000000000000000000000000002',
+))
