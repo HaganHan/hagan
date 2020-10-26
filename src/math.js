@@ -43,9 +43,9 @@ export function toFixed (number, decimalLength = 0) {
  * times: BigInt
  */
 function breakUpNumber (number) {
-  const symbol = number < 0 ? -1n : 1n
+  const symbol = number < 0 ? BigInt(-1) : BigInt(1)
   let stringNumber = toString(number)
-  if (symbol === -1n) {
+  if (symbol === BigInt(-1)) {
     const arr = stringNumber.split('')
     arr.shift()
     stringNumber = arr.join('')
@@ -70,19 +70,19 @@ export function add (...numberList) {
     const maxTimes = times1 > times2 ? times1 : times2
     // 如果 整数位 为0的话，整数位 * 倍数 也会变成0，所以会导致无法在整数位占位
     // 解决办法为当 整数位 为0时，让 1 * 倍数
-    const placeholder1 = integer1 === '0' ? 1n : 0n
-    const placeholder2 = integer2 === '0' ? 1n : 0n
+    const placeholder1 = integer1 === '0' ? BigInt(1) : BigInt(0)
+    const placeholder2 = integer2 === '0' ? BigInt(1) : BigInt(0)
     // 0.1 的小数位为1，0.22的小数位为22，如果直接转整数并进行运算会出现以下 (1 + 22) / 100 = 0.23 的情况
     // 而我们需要的是 (10 + 22) / 100 = 0.32，
     // 解决办法为，在长度不满足预期的小数后面补0
     Array(toString(maxTimes).length - 1 - decimal1.length).fill().forEach(() => decimal1 += '0')
     Array(toString(maxTimes).length - 1 - decimal2.length).fill().forEach(() => decimal2 += '0')
     // 使用BigInt计算出完全正确且不包含小数点的BigInt类型的整数
-    const bigInt = symbol1 * ((BigInt(integer1) || 1n) * maxTimes + BigInt(decimal1)) + symbol2 * ((BigInt(integer2) || 1n) * maxTimes + BigInt(decimal2))
+    const bigInt = symbol1 * ((BigInt(integer1) || BigInt(1)) * maxTimes + BigInt(decimal1)) + symbol2 * ((BigInt(integer2) || BigInt(1)) * maxTimes + BigInt(decimal2))
     const isNegative = bigInt < 0
 
     // 求绝对值并转成字符串
-    const stringBigInt = toString(isNegative ? -1n * bigInt : bigInt)
+    const stringBigInt = toString(isNegative ? -BigInt(1) * bigInt : bigInt)
     // 转成数组，方便进行插入小数点等字符串操作
     const arrayResult = [...stringBigInt]
     // 找到小数点从后面数的插入位置
@@ -100,7 +100,7 @@ export function add (...numberList) {
     let resultArray = []
     // 求出小数位置的BigInt类型
     const decimalBigInt = BigInt(arrayResult.slice(-pointIndex).join(''))
-    if (decimalBigInt === 0n) { // 如果小数位置为0那么不需要拼接小数点
+    if (decimalBigInt === BigInt(0)) { // 如果小数位置为0那么不需要拼接小数点
       resultArray = [...integerStringList]
     } else { // 否则需要拼接小数点以及小数部分的字符串
       resultArray = [...integerStringList, '.', decimalStringList.join('')]

@@ -27,11 +27,11 @@ class HashTable {
   djb2HashCode (key) {
     if (getType(key) === 'Number') return key
     const stringKey = toString(key)
-    let hash = 5381n // 一个质数
+    let hash = BigInt(5381) // 一个质数
     stringKey.split('').forEach((item, index) => {
-      hash = add(BigInt(hash) * 33n, stringKey.codePointAt(index))
+      hash = add(BigInt(hash) * BigInt(33), stringKey.codePointAt(index))
     })
-    hash = BigInt(hash) % 1013n // 质数，该质数应该大于目标场景hashTable的总长度，这里假设总长度为1000
+    hash = BigInt(hash) % BigInt(1013) // 质数，该质数应该大于目标场景hashTable的总长度，这里假设总长度为1000
     return toString(hash)
   }
   getHashCode (key) {

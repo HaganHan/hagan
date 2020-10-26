@@ -3,9 +3,9 @@ export function pow (bigInt, exponent) {
   bigInt = BigInt(bigInt)
   exponent = BigInt(exponent)
   
-  if (exponent === 0n) return 1n
-  let result = 1n
-  for (let i = 0n; i < exponent; i++) {
+  if (exponent === BigInt(0)) return BigInt(1)
+  let result = BigInt(1)
+  for (let i = BigInt(0); i < exponent; i++) {
     result = result * bigInt
   }
   return result
