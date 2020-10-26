@@ -1,9 +1,7 @@
 import hagan from '../src/hagan'
+import HashTable from '../src/HashTable'
 
-const maxNumber = Number.MAX_SAFE_INTEGER
-const minNumber = Number.MIN_SAFE_INTEGER
-
-console.log(hagan.math.add(
-  '0.99',
-  '9.9',
-))
+const hashTable = new HashTable()
+hashTable.put('name', 'hagan')
+hashTable.put('anme', 'rita')
+console.log(hashTable)
