@@ -2,6 +2,9 @@ import hagan from '../src/hagan'
 import HashTable from '../src/HashTable'
 
 const hashTable = new HashTable()
-hashTable.put('name', 'hagan')
-hashTable.put('anme', 'rita')
+hashTable.put('Ygritte', 'hagan')
+hashTable.put('Jonathan', 'rita')
+hashTable.put('Jamie', 'rita')
+hashTable.put('Jack', 'rita')
+hashTable.put('Jasmine', 'rita')
 console.log(hashTable)

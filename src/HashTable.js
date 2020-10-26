@@ -7,12 +7,15 @@ import toString from './toString'
 import { add } from './math'
 import { ValuePair } from './Dictionary'
 import LinkedList from './LinkedList'
-import { times } from 'lodash'
 
 class HashTable {
   constructor () {
     this._table = {}
   }
+  /**
+   * lose lose散列函数
+   * 传入一个字符串，将字符串的每一个字母的ASCII值相加，返回结果
+   */
   loseloseHashCode (key) {
     if (getType(key) === 'Number') return key
     const stringKey = toString(key)
@@ -21,11 +24,26 @@ class HashTable {
     const asciiCount = asciiKey.reduce((a, b) => add(a, b))
     return asciiCount
   }
-  getHashCode (key) {
-    return this.loseloseHashCode(key)
+  djb2HashCode (key) {
+    if (getType(key) === 'Number') return key
+    const stringKey = toString(key)
+    let hash = 5381n // 一个质数
+    stringKey.split('').forEach((item, index) => {
+      hash = add(BigInt(hash) * 33n, stringKey.codePointAt(index))
+    })
+    hash = BigInt(hash) % 1013n // 质数，该质数应该大于目标场景hashTable的总长度，这里假设总长度为1000
+    return toString(hash)
   }
-  // 这里的put方法存在一个问题，就是 name 与 anme 最后得到的hashCode相同，这样会导致后保存的结果会覆盖之前的结果
-  // 解决办法有两种: 1.分离链接法 2.线性探索法
+  getHashCode (key) {
+    // return this.loseloseHashCode(key)
+    return this.djb2HashCode(key)
+  }
+  /**
+   * 这里的put方法存在一个问题，
+   * 如果使用lose lose散列算法的话，name 与 anme 最后得到的hashCode相同，这样会导致后保存的结果会覆盖之前的结果
+   * 如果使用djb2HashCode 散列算法的话，通常得到的hashCode都是不同的，但还是有一定的概率会相同
+   * 解决办法有两种: 1.分离链接法 2.线性探索法
+   */
   // put (key, value) {
   //   if (key == null || value == null) return false
   //   const tableKey = this.getHashCode(key)
@@ -36,31 +54,13 @@ class HashTable {
   /**
    * 分离链接法
    */
-  // put (key, value) {
-  //   if (key == null || value == null) return false
-  //   const tableKey = this.getHashCode(key)
-  //   if (!(this._table[tableKey] instanceof LinkedList)) {
-  //     this._table[tableKey] = new LinkedList()
-  //   }
-  //   this._table[tableKey].push(new ValuePair(key, value))
-  //   return true
-  // }
-
-  /**
-   * 线性探索法
-   */
   put (key, value) {
     if (key == null || value == null) return false
     const tableKey = this.getHashCode(key)
-    if (!(this._table[tableKey] instanceof ValuePair)) {
-      this._table[tableKey] = new ValuePair(key, value)
-      return true
+    if (!(this._table[tableKey] instanceof LinkedList)) {
+      this._table[tableKey] = new LinkedList()
     }
-    let index = add(tableKey, 1)
-    while (this._table[index] instanceof ValuePair) {
-      index = add(index, 1)
-    }
-    this._table[index] = new ValuePair(key, value)
+    this._table[tableKey].push(new ValuePair(key, value))
     return true
   }
   get (key) {
@@ -74,7 +74,7 @@ class HashTable {
     }
     return
   }
-  remove (key) { // TODO
+  remove (key) {
     const tableKey = this.getHashCode(key)
     const linkedList = this._table[tableKey]
     if (linkedList instanceof LinkedList) {
@@ -94,6 +94,24 @@ class HashTable {
     }
     return false
   }
+  
+  /**
+   * 线性探索法
+   */
+  // put (key, value) {
+  //   if (key == null || value == null) return false
+  //   const tableKey = this.getHashCode(key)
+  //   if (!(this._table[tableKey] instanceof ValuePair)) {
+  //     this._table[tableKey] = new ValuePair(key, value)
+  //     return true
+  //   }
+  //   let index = add(tableKey, 1)
+  //   while (this._table[index] instanceof ValuePair) {
+  //     index = add(index, 1)
+  //   }
+  //   this._table[index] = new ValuePair(key, value)
+  //   return true
+  // }
 }
 
 export default HashTable
