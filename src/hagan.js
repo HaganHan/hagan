@@ -84,6 +84,7 @@ import HashTable from './HashTable'
 import bigInt from './bigInt'
 import getMaxStackSize from './getMaxStackSize'
 import fibonacci from './fibonacci'
+import BinarySearchTree from './BinarySearchTree'
 
 const hagan = {
   _rely,
@@ -171,7 +172,8 @@ const hagan = {
   HashTable,
   bigInt,
   getMaxStackSize,
-  fibonacci
+  fibonacci,
+  BinarySearchTree
 }
 
 export default hagan

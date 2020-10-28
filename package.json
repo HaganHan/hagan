@@ -23,14 +23,14 @@
     "@babel/preset-env": "^7.11.5",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-node-resolve": "^9.0.0",
-    "lodash": "^4.17.20",
-    "rollup": "^2.29.0",
-    "rollup-plugin-uglify": "^6.0.4",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^2.0.1",
     "csv-loader": "^3.0.2",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "lodash": "^4.17.20",
+    "rollup": "^2.29.0",
+    "rollup-plugin-uglify": "^6.0.4",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.27.1",
@@ -38,5 +38,6 @@
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.5",
     "xml-loader": "^1.2.1"
-  }
+  },
+  "dependencies": {}
 }
