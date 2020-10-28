@@ -2,9 +2,9 @@
  * 阶乘函数
  */
 
-const factorial = function (number) {
+function factorial (number) {
   if (number === 0) return 1
-  return number * hagan.factorial(number - 1)
+  return number * factorial(number - 1)
 }
 
 export default factorial
