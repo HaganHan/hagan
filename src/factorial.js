@@ -1,5 +1,6 @@
 /**
  * 阶乘函数
+ * 5 * 4 * 3 * 2 * 1
  */
 
 function factorial (number) {
