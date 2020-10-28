@@ -83,11 +83,16 @@ export function add (...numberList) {
 
     // 求绝对值并转成字符串
     const stringBigInt = toString(isNegative ? -BigInt(1) * bigInt : bigInt)
-    // 转成数组，方便进行插入小数点等字符串操作
-    const arrayResult = [...stringBigInt]
     // 找到小数点从后面数的插入位置
     const pointIndex = toString(maxTimes).length - 1
-    if (pointIndex === 0) return isNegative ? `-${stringBigInt}` : stringBigInt
+    if (pointIndex === 0) {
+      // 如果用了占位符，那么整数位置需要将占位符加上的数减回去
+      const minuxPlaceholder = toString(BigInt(stringBigInt) - placeholder1 - placeholder2)
+      return isNegative ? `-${minuxPlaceholder}` : minuxPlaceholder
+    }
+
+    // 转成数组，方便进行插入小数点等字符串操作
+    const arrayResult = [...stringBigInt]
 
     // 整数位置的字符串列表，每一项数据类型为字符串
     let integerStringList = arrayResult.slice(0, -pointIndex)

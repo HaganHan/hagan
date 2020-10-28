@@ -1,10 +1,5 @@
 import hagan from '../src/hagan'
-import HashTable from '../src/HashTable'
 
-const hashTable = new HashTable()
-hashTable.put('Ygritte', 'hagan')
-hashTable.put('Jonathan', 'rita')
-hashTable.put('Jamie', 'rita')
-hashTable.put('Jack', 'rita')
-hashTable.put('Jasmine', 'rita')
-console.log(hashTable)
+console.log(hagan.math.add(0, 1))
+
+console.log(hagan.fibonacci(7))

@@ -83,6 +83,7 @@ import toString from './toString'
 import HashTable from './HashTable'
 import bigInt from './bigInt'
 import getMaxStackSize from './getMaxStackSize'
+import fibonacci from './fibonacci'
 
 const hagan = {
   _rely,
@@ -169,7 +170,8 @@ const hagan = {
   toString,
   HashTable,
   bigInt,
-  getMaxStackSize
+  getMaxStackSize,
+  fibonacci
 }
 
 export default hagan
