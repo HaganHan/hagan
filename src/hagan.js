@@ -82,6 +82,7 @@ import Dictionary from './Dictionary'
 import toString from './toString'
 import HashTable from './HashTable'
 import bigInt from './bigInt'
+import getMaxStackSize from './getMaxStackSize'
 
 const hagan = {
   _rely,
@@ -167,7 +168,8 @@ const hagan = {
   Dictionary,
   toString,
   HashTable,
-  bigInt
+  bigInt,
+  getMaxStackSize
 }
 
 export default hagan
