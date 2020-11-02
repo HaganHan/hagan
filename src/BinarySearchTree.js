@@ -127,7 +127,7 @@ class BinarySearchTree {
   has (key) {
     return this.hasNode(this._root, key)
   }
-  hasNode (node, key) { // TODO
+  hasNode (node, key) {
     if (!(node instanceof Node)) return false
     const compare = this.compareFn(key, node.key)
     if (compare === 0) return true
