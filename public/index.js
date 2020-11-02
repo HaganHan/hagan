@@ -36,6 +36,18 @@ tree.postOrderTraverse(key => {
 })
 console.groupEnd('后序遍历: ')
 
+tree.remove(3)
+tree.remove(25)
+tree.remove(11)
 console.log('获取最小值: ', tree.getMin())
 console.log('获取最大值: ', tree.getMax())
+
+console.log('has: ', tree.has(11))
 console.log('tree: ', tree)
+
+const treeRemove = new hagan.BinarySearchTree()
+treeRemove.insert(11)
+treeRemove.insert(9)
+treeRemove.insert(7)
+treeRemove.remove(9)
+console.log('11,9,7移除9: ', treeRemove)

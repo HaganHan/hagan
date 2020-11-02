@@ -95,10 +95,14 @@ class BinarySearchTree {
    * 获取最小值
    */
   getMin () {
-    return this.getMinNode(this._root)
+    return this.getMinKey(this._root)
+  }
+  getMinKey (node) {
+    if (!(node.left instanceof Node)) return node.key
+    return this.getMinKey(node.left)
   }
   getMinNode (node) {
-    if (!(node.left instanceof Node)) return node.key
+    if (!(node.left instanceof Node)) return node
     return this.getMinNode(node.left)
   }
 
@@ -106,10 +110,14 @@ class BinarySearchTree {
    * 获取最大值
    */
   getMax () {
-    return this.getMaxNode(this._root)
+    return this.getMaxKey(this._root)
+  }
+  getMaxKey (node) {
+    if (!(node.right instanceof Node)) return node.key
+    return this.getMaxKey(node.right)
   }
   getMaxNode (node) {
-    if (!(node.right instanceof Node)) return node.key
+    if (!(node.right instanceof Node)) return node
     return this.getMaxNode(node.right)
   }
 
@@ -117,11 +125,53 @@ class BinarySearchTree {
    * 判断是否存在某值
    */
   has (key) {
-    this.hasNode(this._root, key)
+    return this.hasNode(this._root, key)
   }
   hasNode (node, key) { // TODO
     if (!(node instanceof Node)) return false
+    const compare = this.compareFn(key, node.key)
+    if (compare === 0) return true
+    if (compare === -1) return this.hasNode(node.left)
+    if (compare === 1) return this.hasNode(node.right)
+  }
 
+  /**
+   * 移除一个节点
+   */
+  remove (key) {
+    this._root = this.removeNode(this._root, key)
+  }
+  removeNode (node, key) { // 从node树中移除一个节点，返回新的重组后的node树
+    if (!(node instanceof Node)) return null
+
+    const compare = this.compareFn(node.key, key)
+    if (compare === -1) {
+      node.right = this.removeNode(node.right, key)
+      return node
+    } else if (compare === 1) {
+      node.left = this.removeNode(node.left, key)
+      return node
+    }
+
+    // compare === 0
+    const hasLeft = node.left instanceof Node
+    const hasRight = node.right instanceof Node
+    if (!hasLeft && !hasRight) {
+      node = null
+      return node
+    }
+    if (!hasLeft && hasRight) {
+      node = node.right
+      return node
+    }
+    if (hasLeft && !hasRight) {
+      node = node.left
+      return node
+    }
+    const rightMinNode = this.getMinNode(node.right)
+    node.key = rightMinNode.key
+    this.removeNode(node.right, rightMinNode.key)
+    return node
   }
 }
 
