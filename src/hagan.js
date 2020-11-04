@@ -87,6 +87,7 @@ import fibonacci from './fibonacci'
 import BinarySearchTree from './BinarySearchTree'
 // import AVLTree from './AVLTree'
 import MinHeap from './MinHeap'
+import MaxHeap from './MaxHeap'
 
 const hagan = {
   _rely,
@@ -177,7 +178,8 @@ const hagan = {
   fibonacci,
   BinarySearchTree,
   // AVLTree,
-  MinHeap
+  MinHeap,
+  MaxHeap
 }
 
 export default hagan
