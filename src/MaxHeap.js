@@ -4,12 +4,7 @@
  * 二叉堆不是最小堆就是最大堆，最小堆允许你快速导出树的最小值，最大堆允许你快速导出树的最大值，所有节点都大于等于最大堆或小于等于最小堆，这叫堆特性
  */
 import MinHeap from './MinHeap'
-
-function defaultCompare (a, b) {
-  if (a === b) return 0
-  if (a < b) return -1
-  if (a > b) return 1
-}
+import defaultCompare from './defaultCompare'
 
 function reverseCompare (a, b) {
   return defaultCompare(b, a)

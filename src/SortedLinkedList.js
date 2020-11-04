@@ -3,12 +3,7 @@
  * 使用排序算法将元素进行排序
  */
 import LinkedList, { defaultEquals, LinkedNode } from './LinkedList'
-
-function defaultCompare (a, b) {
-  if (a === b) return 0
-  if (a < b) return -1
-  if (a > b) return 1
-}
+import defaultCompare from './defaultCompare'
 
 class SortedLinkedList extends LinkedList {
   constructor (equalsFn = defaultEquals, compareFn = defaultCompare) {

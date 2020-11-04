@@ -22,7 +22,7 @@
  * 二叉搜索树(BST)
  * 左子节点小于父节点，右子节点大于父节点
  */
-
+import defaultCompare from './defaultCompare'
 
 export class Node {
   constructor (key) {
@@ -30,12 +30,6 @@ export class Node {
     this.left = null
     this.right = null
   }
-}
-
-function defaultCompare (a, b) {
-  if (a === b) return 0
-  if (a < b) return -1
-  if (a > b) return 1
 }
 
 class BinarySearchTree {

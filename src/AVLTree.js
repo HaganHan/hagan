@@ -5,14 +5,10 @@
  * AVL树是一种自平衡数，添加或移除节点时会尝试保持平衡并尽可能转换成完全树，任何一个节点左右两侧子树的高度之差最多为1
  * 节点的高度: 从当前节点到最深子节点的数量
  * 平衡因子: 
+ * TODO:没写完
  */
 import BinarySearchTree, { Node } from './BinarySearchTree'
-
-function defaultCompare (a, b) {
-  if (a === b) return 0
-  if (a < b) return -1
-  if (a > b) return 1
-}
+import defaultCompare from './defaultCompare'
 
 // AdelsonVelskiiLandiTree
 class AVLTree extends BinarySearchTree {
@@ -49,7 +45,7 @@ class AVLTree extends BinarySearchTree {
         return 3
     }
   }
-  // TODO:学到AVL旋转
+  // TODO:AVL旋转
 }
 
 export default AVLTree
