@@ -4,14 +4,10 @@
  */
 import LinkedList, { defaultEquals, LinkedNode } from './LinkedList'
 
-const Compare = {
-  LESS_THAN: -1,
-  BIGGER_THAN: 1
-}
-
 function defaultCompare (a, b) {
   if (a === b) return 0
-  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
+  if (a < b) return -1
+  if (a > b) return 1
 }
 
 class SortedLinkedList extends LinkedList {
@@ -24,7 +20,7 @@ class SortedLinkedList extends LinkedList {
     let index = 0
     for (; index < this.size(); index++) {
       const compare = this.compareFn(element, current.element)
-      if (compare === Compare.LESS_THAN) return index
+      if (compare === -1) return index
       current = current.next
     }
     return index
