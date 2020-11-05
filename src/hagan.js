@@ -89,6 +89,7 @@ import BinarySearchTree from './BinarySearchTree'
 import MinHeap from './MinHeap'
 import MaxHeap from './MaxHeap'
 import sort from './sort'
+// import Graph from './Graph'
 
 const hagan = {
   _rely,
@@ -181,7 +182,8 @@ const hagan = {
   // AVLTree,
   MinHeap,
   MaxHeap,
-  sort
+  sort,
+  // Graph
 }
 
 export default hagan
