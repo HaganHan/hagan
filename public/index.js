@@ -1,20 +1,23 @@
 import hagan from '../src/hagan'
 
-const graph = new hagan.Graph()
+const array = [5, 7, 3, 9, 1, 6, 2, 8, 4, 0]
 
-const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-myVertices.forEach(item => graph.addVertex(item))
+console.time('冒泡排序')
+console.log('冒泡排序: ', hagan.sort.bubbleSort(array)) // 对比了45次
+console.timeEnd('冒泡排序')
 
-graph.addEdge('A', 'B')
-graph.addEdge('A', 'C')
-graph.addEdge('A', 'D')
-graph.addEdge('C', 'D')
-graph.addEdge('C', 'G')
-graph.addEdge('D', 'G')
-graph.addEdge('D', 'H')
-graph.addEdge('B', 'E')
-graph.addEdge('B', 'F')
-graph.addEdge('E', 'I')
+console.time('选择排序')
+console.log('选择排序: ', hagan.sort.selectionSort(array)) // 对比了54次
+console.timeEnd('选择排序')
 
-console.log(graph.toString())
-console.log('graph: ', graph)
+console.time('插入排序')
+console.log('插入排序: ', hagan.sort.insertionSort(array)) // 对比了34次
+console.timeEnd('插入排序')
+
+console.time('归并排序')
+console.log('归并排序: ', hagan.sort.mergeSort(array)) // 对比了25次
+console.timeEnd('归并排序')
+
+console.time('快速排序')
+console.log('快速排序: ', hagan.sort.quickSort(array)) // 对比了19次
+console.timeEnd('快速排序')

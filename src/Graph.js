@@ -30,7 +30,6 @@
  * 2.邻接表
  * https://p4.ssl.qhimg.com/t01dbf0aeb51d3de4fa.jpg
  */
-
 class Graph {
   constructor (isDirected = false) { // 是否是有向图
     this._isDirected = isDirected
