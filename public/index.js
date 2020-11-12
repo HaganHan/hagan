@@ -21,3 +21,11 @@ console.timeEnd('归并排序')
 console.time('快速排序')
 console.log('快速排序: ', hagan.sort.quickSort(array)) // 对比了19次
 console.timeEnd('快速排序')
+
+console.time('计数排序')
+console.log('计数排序: ', hagan.sort.countionSort(array))
+console.timeEnd('计数排序')
+
+console.time('桶排序')
+console.log('桶排序: ', hagan.sort.bucketSort(array))
+console.timeEnd('桶排序')

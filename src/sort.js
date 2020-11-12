@@ -68,34 +68,28 @@ function insertionSort (array, compareFn = defaultCompare) {
  * 归并排序
  * O(n)
  */
-function merge (leftArr, rightArr, compareFn) {
-  const arr = []
+function mergeSort (array, compareFn = defaultCompare) {
+  const { length } = array
+  if (length <= 1) return array
+  const middleIndex = Math.floor(length / 2)
+  const leftArr = mergeSort(array.slice(0, middleIndex), compareFn)
+  const rightArr = mergeSort(array.slice(middleIndex, length), compareFn)
+  const mergeArr = []
   while (leftArr.length > 0 && rightArr.length > 0) {
     const compare = compareFn(leftArr[0], rightArr[0])
     if (compare === -1 || compare === 0) {
-      arr.push(leftArr.shift())
+      mergeArr.push(leftArr.shift())
     } else {
-      arr.push(rightArr.shift())
+      mergeArr.push(rightArr.shift())
     }
   }
   while (leftArr.length !== 0) {
-    arr.push(leftArr.shift())
+    mergeArr.push(leftArr.shift())
   }
   while (rightArr.length !== 0) {
-    arr.push(rightArr.shift())
+    mergeArr.push(rightArr.shift())
   }
-  return arr
-}
-function mergeSort (array, compareFn = defaultCompare) {
-  let arr = [...array]
-  const { length } = arr
-  if (length > 1) {
-    const middleIndex = Math.floor(length / 2)
-    const leftArr = mergeSort(arr.slice(0, middleIndex), compareFn)
-    const rightArr = mergeSort(arr.slice(middleIndex, length), compareFn)
-    arr = merge(leftArr, rightArr, compareFn)
-  }
-  return arr
+  return mergeArr
 }
 
 /**
@@ -119,6 +113,7 @@ function heapSort (array, compareFn = defaultCompare) {
 
 /**
  * 快速排序
+ * 速度较快，通用性最高
  */
 function quickSort (array, compareFn = defaultCompare) {
   let arr = [...array]
@@ -168,12 +163,79 @@ function quickSort (array, compareFn = defaultCompare) {
   return leftArr.concat(rightArr)
 }
 
+/**
+ * 计数排序(整数排序算法)
+ * O(n+k)
+ * k为临时计数数组的大小
+ * 计数排序只能对整数进行排序
+ */
+function countionSort (array) {
+  const arr = [...array]
+  const { length } = arr
+  if (length <= 1) return arr
+  const maxValue = Math.max(...arr)
+  const countionArr = new Array(maxValue + 1).fill(0)
+  arr.forEach(item => countionArr[item]++)
+  let arrIndex = 0
+  countionArr.forEach((value, index) => {
+    while (value > 0) {
+      arr[arrIndex] = index
+      value--
+      arrIndex++
+    }
+  })
+  return arr
+}
+
+/**
+ * 桶排序(整数排序算法)
+ * 箱排序
+ * 分布式排序算法
+ */
+function bucketSort (array, bucketSize = 5) {
+  if (array.length === 0) return array
+  const minValue = Math.min(...array) // 1
+  const maxValue = Math.max(...array) // 22
+  const bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1 // 5
+  const buckets = new Array(bucketCount).fill().map(() => [])
+  array.forEach(item => {
+    const index = Math.floor((item - minValue) / bucketSize)
+    buckets[index].push(item)
+  })
+  const arr = []
+  buckets.forEach((itemArr, index) => {
+    // 插入排序
+    for (let i = 1; i < itemArr.length; i++) {
+      for (let j = i - 1; j >= 0; j--) {
+        if (j === 0 && itemArr[i] <= itemArr[j]) {
+          itemArr.unshift(itemArr.splice(i, 1)[0])
+          break
+        }
+        if (itemArr[i] > itemArr[j]) {
+          itemArr.splice(j + 1, 0, itemArr.splice(i, 1)[0])
+          break
+        }
+      }
+    }
+    itemArr.forEach(item => arr.push(item))
+  })
+  return arr
+}
+
+/**
+ * 基数排序(整数排序算法)
+ * 分布式排序算法
+ * TODO
+ */
+
 const sort = {
   bubbleSort,
   selectionSort,
   insertionSort,
   mergeSort,
-  quickSort
+  quickSort,
+  countionSort,
+  bucketSort
 }
 
 export default sort
