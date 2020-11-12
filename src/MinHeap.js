@@ -34,7 +34,7 @@ class MinHeap {
   _siftUp (index) {
     if (index <= 0) return
     let parentNodeIndex = this._getParentNodeIndex(index)
-    while (this.compareFn(this._heap[index], this._heap[parentNodeIndex]) === -1) {
+    while (this.compareFn(this._heap[index], this._heap[parentNodeIndex]) < 0) {
       // 交换
       [this._heap[index], this._heap[parentNodeIndex]] = [this._heap[parentNodeIndex], this._heap[index]]
 
@@ -61,14 +61,14 @@ class MinHeap {
 
     if (leftChildNodeIndex < this.size) {
       const leftChildNodeValue = this._heap[leftChildNodeIndex]
-      if (this.compareFn(targetNodeValue, leftChildNodeValue) === 1) {
+      if (this.compareFn(targetNodeValue, leftChildNodeValue) > 0) {
         targetNodeIndex = leftChildNodeIndex
         targetNodeValue = leftChildNodeValue
       }
     }
     if (rightChildNodeIndex < this.size) {
       const rightChildNodeValue = this._heap[rightChildNodeIndex]
-      if (this.compareFn(targetNodeValue, rightChildNodeValue) === 1) {
+      if (this.compareFn(targetNodeValue, rightChildNodeValue) > 0) {
         targetNodeIndex = rightChildNodeIndex
       }
     }

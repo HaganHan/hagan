@@ -3,10 +3,7 @@
  * 类似寻宝游戏
  * 宝藏1里存着宝藏2的地点，宝藏2存着宝藏3的地点，想要找到宝藏3必须先从第一个开始找
  */
-
-export function defaultEquals (a, b) {
-  return a === b
-}
+import defaultEquals from './defaultEquals'
 
 export class LinkedNode {
   constructor (element) {

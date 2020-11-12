@@ -2,7 +2,7 @@
  * 双向循环链表
  * 双向循环链表和双向链表唯一的区别就是最后一个node节点的next指向第一个node节点，第一个node节点的prev属性指向最后一个node节点
  */
-import { defaultEquals } from './LinkedList'
+import defaultEquals from './defaultEquals'
 import DoublyLinkedList, { DoublyLinkedNode } from './DoublyLinkedList'
 
 class DoublyCircularLinkedList extends DoublyLinkedList {

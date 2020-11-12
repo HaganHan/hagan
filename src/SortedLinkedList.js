@@ -2,8 +2,9 @@
  * 有序链表
  * 使用排序算法将元素进行排序
  */
-import LinkedList, { defaultEquals, LinkedNode } from './LinkedList'
+import LinkedList, { LinkedNode } from './LinkedList'
 import defaultCompare from './defaultCompare'
+import defaultEquals from './defaultEquals'
 
 class SortedLinkedList extends LinkedList {
   constructor (equalsFn = defaultEquals, compareFn = defaultCompare) {
@@ -15,7 +16,7 @@ class SortedLinkedList extends LinkedList {
     let index = 0
     for (; index < this.size(); index++) {
       const compare = this.compareFn(element, current.element)
-      if (compare === -1) return index
+      if (compare < 0) return index
       current = current.next
     }
     return index

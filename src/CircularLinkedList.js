@@ -3,7 +3,8 @@
  * 循环链表和链表唯一的区别就是最后一个node节点的next指向第一个node节点
  */
 
-import LinkedList, { LinkedNode, defaultEquals } from './LinkedList'
+import LinkedList, { LinkedNode } from './LinkedList'
+import defaultEquals from './defaultEquals'
 
 class CircularLinkedList extends LinkedList {
   constructor (equalsFn = defaultEquals) {

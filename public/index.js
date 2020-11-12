@@ -1,31 +1,34 @@
 import hagan from '../src/hagan'
 
 const array = [5, 7, 3, 9, 1, 6, 2, 8, 4, 0]
+const arrObj = [
+  { age: 5, name: 'hagan5' },
+  { age: 7, name: 'hagan7' },
+  { age: 3, name: 'hagan3' },
+  { age: 9, name: 'hagan9' },
+  { age: 1, name: 'hagan1' },
+  { age: 6, name: 'hagan6' },
+  { age: 2, name: 'hagan2' },
+  { age: 8, name: 'hagan8' },
+  { age: 4, name: 'hagan4' },
+  { age: 0, name: 'hagan0' },
+]
 
-console.time('冒泡排序')
-console.log('冒泡排序: ', hagan.sort.bubbleSort(array)) // 对比了45次
-console.timeEnd('冒泡排序')
+console.time('顺序搜索')
+console.log('顺序搜索: ', hagan.search.sequentialSearch(array, 2))
+console.log('顺序搜索: ', hagan.search.sequentialSearch(arrObj, { name: 'hagan2' }, (current, item) => current.name === item.name))
+console.timeEnd('顺序搜索')
 
-console.time('选择排序')
-console.log('选择排序: ', hagan.sort.selectionSort(array)) // 对比了54次
-console.timeEnd('选择排序')
+console.time('二分搜索')
+console.log('二分搜索: ', hagan.search.binarySearch(array, 2))
+console.log('二分搜索: ', hagan.search.binarySearch(arrObj, { age: 2 }, (current, item) => current.age - item.age))
+console.log('二分搜索: ', hagan.search.binarySearch(arrObj, { name: 'hagan2' }, (a, b) => {
+  if (a.name > b.name) return 1
+  if (a.name < b.name) return -1
+  return 0
+}))
+console.timeEnd('二分搜索')
 
-console.time('插入排序')
-console.log('插入排序: ', hagan.sort.insertionSort(array)) // 对比了34次
-console.timeEnd('插入排序')
-
-console.time('归并排序')
-console.log('归并排序: ', hagan.sort.mergeSort(array)) // 对比了25次
-console.timeEnd('归并排序')
-
-console.time('快速排序')
-console.log('快速排序: ', hagan.sort.quickSort(array)) // 对比了19次
-console.timeEnd('快速排序')
-
-console.time('计数排序')
-console.log('计数排序: ', hagan.sort.countionSort(array))
-console.timeEnd('计数排序')
-
-console.time('桶排序')
-console.log('桶排序: ', hagan.sort.bucketSort(array))
-console.timeEnd('桶排序')
+console.time('内插搜索')
+console.log('内插搜索: ', hagan.search.interpolationSearch(array, 2))
+console.timeEnd('内插搜索')

@@ -48,7 +48,7 @@ class BinarySearchTree {
   insertNode (node, key) {
     const compare = this.compareFn(key, node.key)
     if (compare === 0) return false
-    if (compare === -1) {
+    if (compare < 0) {
       if (node.left instanceof Node) {
         this.insertNode(node.left, key)
         return true
@@ -57,7 +57,7 @@ class BinarySearchTree {
       return true
     }
 
-    // compare === 1
+    // compare > 0
     if (node.right instanceof Node) {
       this.insertNode(node.right, key)
       return true
@@ -148,8 +148,8 @@ class BinarySearchTree {
     if (!(node instanceof Node)) return false
     const compare = this.compareFn(key, node.key)
     if (compare === 0) return true
-    if (compare === -1) return this.hasNode(node.left)
-    if (compare === 1) return this.hasNode(node.right)
+    if (compare < 0) return this.hasNode(node.left)
+    if (compare > 0) return this.hasNode(node.right)
   }
 
   /**
@@ -162,10 +162,10 @@ class BinarySearchTree {
     if (!(node instanceof Node)) return null
 
     const compare = this.compareFn(node.key, key)
-    if (compare === -1) {
+    if (compare < 0) {
       node.right = this.removeNode(node.right, key)
       return node
-    } else if (compare === 1) {
+    } else if (compare > 0) {
       node.left = this.removeNode(node.left, key)
       return node
     }

@@ -11,7 +11,7 @@ function bubbleSort (array, compareFn = defaultCompare) {
   const arr = [...array]
   for (let i = arr.length - 1; i >= 0; i--) {
     for (let j = 0; j < i; j++) {
-      if (compareFn(arr[j], arr[j + 1]) === 1) {
+      if (compareFn(arr[j], arr[j + 1]) > 0) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
       }
     }
@@ -28,7 +28,7 @@ function selectionSort (array, compareFn = defaultCompare) {
   for (let i = 0; i < arr.length - 1; i++) {
     let minIndex = i
     for (let j = i; j < arr.length; j++) {
-      if (compareFn(arr[j], arr[minIndex]) === -1) {
+      if (compareFn(arr[j], arr[minIndex]) < 0) {
         minIndex = j
       }
     }
@@ -49,7 +49,7 @@ function insertionSort (array, compareFn = defaultCompare) {
   for (let i = 1; i < length; i++) {
     for (let j = i - 1; j >= 0; j--) {
       const compare = compareFn(arr[i], arr[j])
-      if (compare === 1 || compare === 0) {
+      if (compare >= 0) {
         const [element] = arr.splice(i, 1)
         arr.splice(j + 1, 0, element)
         break
@@ -77,7 +77,7 @@ function mergeSort (array, compareFn = defaultCompare) {
   const mergeArr = []
   while (leftArr.length > 0 && rightArr.length > 0) {
     const compare = compareFn(leftArr[0], rightArr[0])
-    if (compare === -1 || compare === 0) {
+    if (compare <= 0) {
       mergeArr.push(leftArr.shift())
     } else {
       mergeArr.push(rightArr.shift())
@@ -128,14 +128,14 @@ function quickSort (array, compareFn = defaultCompare) {
   out:
   while (leftIndex !== rightIndex) {
     if (isEnd) {
-      while (compareFn(arr[rightIndex], tmp) === 1) {
+      while (compareFn(arr[rightIndex], tmp) > 0) {
         rightIndex--
         if (leftIndex === rightIndex) break out
       }
       arr[leftIndex] = arr[rightIndex]
       leftIndex++
     } else {
-      while (compareFn(arr[leftIndex], tmp) === -1) {
+      while (compareFn(arr[leftIndex], tmp) < 0) {
         leftIndex++
         if (leftIndex === rightIndex) break out
       }
@@ -150,15 +150,15 @@ function quickSort (array, compareFn = defaultCompare) {
   let rightArr
   if (endIndex === 0) {
     leftArr = [arr.shift()]
-    rightArr = quickSort(arr)
+    rightArr = quickSort(arr, compareFn)
   } else if (endIndex === length - 1) {
     arr[endIndex] = tmp
     rightArr = [arr.pop()]
-    leftArr = quickSort(arr)
+    leftArr = quickSort(arr, compareFn)
   } else {
     arr[endIndex] = tmp
-    leftArr = quickSort(arr.slice(0, endIndex))
-    rightArr = quickSort(arr.slice(endIndex, length))
+    leftArr = quickSort(arr.slice(0, endIndex), compareFn)
+    rightArr = quickSort(arr.slice(endIndex, length), compareFn)
   }
   return leftArr.concat(rightArr)
 }

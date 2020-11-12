@@ -90,6 +90,7 @@ import MinHeap from './MinHeap'
 import MaxHeap from './MaxHeap'
 import sort from './sort'
 // import Graph from './Graph'
+import search from './search'
 
 const hagan = {
   _rely,
@@ -183,7 +184,8 @@ const hagan = {
   MinHeap,
   MaxHeap,
   sort,
-  // Graph
+  // Graph,
+  search
 }
 
 export default hagan
