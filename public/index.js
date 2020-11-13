@@ -28,7 +28,3 @@ console.log('二分搜索: ', hagan.search.binarySearch(arrObj, { name: 'hagan2'
   return 0
 }))
 console.timeEnd('二分搜索')
-
-console.time('内插搜索')
-console.log('内插搜索: ', hagan.search.interpolationSearch(array, 2))
-console.timeEnd('内插搜索')

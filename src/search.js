@@ -61,7 +61,7 @@ function interpolationSearch (array, value) {
 const search = {
   sequentialSearch,
   binarySearch,
-  interpolationSearch
+  // interpolationSearch
 }
 
 export default search
