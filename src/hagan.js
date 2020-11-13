@@ -91,6 +91,7 @@ import MaxHeap from './MaxHeap'
 import sort from './sort'
 // import Graph from './Graph'
 import search from './search'
+import random from './random'
 
 const hagan = {
   _rely,
@@ -185,7 +186,8 @@ const hagan = {
   MaxHeap,
   sort,
   // Graph,
-  search
+  search,
+  random
 }
 
 export default hagan

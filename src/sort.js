@@ -7,7 +7,7 @@ import defaultCompare from './defaultCompare'
  * 冒泡排序
  * O(n²)
  */
-function bubbleSort (array, compareFn = defaultCompare) {
+export function bubbleSort (array, compareFn = defaultCompare) {
   const arr = [...array]
   for (let i = arr.length - 1; i >= 0; i--) {
     for (let j = 0; j < i; j++) {
@@ -23,7 +23,7 @@ function bubbleSort (array, compareFn = defaultCompare) {
  * 选择排序
  * O(n²)
  */
-function selectionSort (array, compareFn = defaultCompare) {
+export function selectionSort (array, compareFn = defaultCompare) {
   const arr = [...array]
   for (let i = 0; i < arr.length - 1; i++) {
     let minIndex = i
@@ -43,7 +43,7 @@ function selectionSort (array, compareFn = defaultCompare) {
  * 插入排序
  * O(n²)
 */
-function insertionSort (array, compareFn = defaultCompare) {
+export function insertionSort (array, compareFn = defaultCompare) {
   const arr = [...array]
   const { length } = arr
   for (let i = 1; i < length; i++) {
@@ -68,7 +68,7 @@ function insertionSort (array, compareFn = defaultCompare) {
  * 归并排序
  * O(n)
  */
-function mergeSort (array, compareFn = defaultCompare) {
+export function mergeSort (array, compareFn = defaultCompare) {
   const { length } = array
   if (length <= 1) return array
   const middleIndex = Math.floor(length / 2)
@@ -115,7 +115,7 @@ function heapSort (array, compareFn = defaultCompare) {
  * 快速排序
  * 速度较快，通用性最高
  */
-function quickSort (array, compareFn = defaultCompare) {
+export function quickSort (array, compareFn = defaultCompare) {
   let arr = [...array]
   const { length } = arr
   if (length < 2) return arr
@@ -169,7 +169,7 @@ function quickSort (array, compareFn = defaultCompare) {
  * k为临时计数数组的大小
  * 计数排序只能对整数进行排序
  */
-function countionSort (array) {
+export function countionSort (array) {
   const arr = [...array]
   const { length } = arr
   if (length <= 1) return arr
@@ -192,7 +192,7 @@ function countionSort (array) {
  * 箱排序
  * 分布式排序算法
  */
-function bucketSort (array, bucketSize = 5) {
+export function bucketSort (array, bucketSize = 5) {
   if (array.length === 0) return array
   const minValue = Math.min(...array) // 1
   const maxValue = Math.max(...array) // 22

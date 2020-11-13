@@ -10,7 +10,7 @@ import sort from './sort'
  * sequentialSearch([ 5, 3, 1, 2, 6 ], 2)
  * sequentialSearch([ {name: 'hagan' }, { name: 'rita' } ], { name: 'hagan' }, (current, item) => current.name === item.name)
  */
-function sequentialSearch (array, value, equalsFn = defaultEquals) {
+export function sequentialSearch (array, value, equalsFn = defaultEquals) {
   for (let i = 0; i < array.length; i++) {
     if (equalsFn(array[i], value)) return i
   }
@@ -23,7 +23,7 @@ function sequentialSearch (array, value, equalsFn = defaultEquals) {
  * binarySearch([ 5, 3, 1, 2, 6 ], 2)
  * binarySearch([ { age: 2 }, { age: 7 } ], { age: 2 }, (a, b) => a.age - b.age)
  */
-function binarySearch (array, value, compareFn = defaultCompare) {
+export function binarySearch (array, value, compareFn = defaultCompare) {
   const { length } = array
   if (length <= 0) return false
   if (length === 1) {

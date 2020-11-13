@@ -14,17 +14,6 @@ const arrObj = [
   { age: 0, name: 'hagan0' },
 ]
 
-console.time('顺序搜索')
-console.log('顺序搜索: ', hagan.search.sequentialSearch(array, 2))
-console.log('顺序搜索: ', hagan.search.sequentialSearch(arrObj, { name: 'hagan2' }, (current, item) => current.name === item.name))
-console.timeEnd('顺序搜索')
-
-console.time('二分搜索')
-console.log('二分搜索: ', hagan.search.binarySearch(array, 2))
-console.log('二分搜索: ', hagan.search.binarySearch(arrObj, { age: 2 }, (current, item) => current.age - item.age))
-console.log('二分搜索: ', hagan.search.binarySearch(arrObj, { name: 'hagan2' }, (a, b) => {
-  if (a.name > b.name) return 1
-  if (a.name < b.name) return -1
-  return 0
-}))
-console.timeEnd('二分搜索')
+console.time('随机数组')
+console.log('随机数组: ', hagan.random.shuffle(arrObj))
+console.timeEnd('随机数组')
