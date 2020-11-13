@@ -14,6 +14,6 @@ const arrObj = [
   { age: 0, name: 'hagan0' },
 ]
 
-console.time('随机数组')
-console.log('随机数组: ', hagan.random.shuffle(arrObj))
-console.timeEnd('随机数组')
+console.time('洗牌算法')
+console.log('洗牌算法: ', hagan.random.shuffle(arrObj))
+console.timeEnd('洗牌算法')
