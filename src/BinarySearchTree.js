@@ -82,7 +82,7 @@ class BinarySearchTree {
 
   /**
    * 先序遍历
-   * 先访问自己，后访问子节点
+   * 先访问自己，后访问子节点，无具体应用场景
    */
   preOrderTraverse (callback) {
     this.preOrderTraverseNode(this._root, callback)
@@ -96,7 +96,7 @@ class BinarySearchTree {
 
   /**
    * 后序遍历
-   * 先访问子节点，后访问自己
+   * 先访问子节点，后访问自己，用于删除回收整颗树
    */
   postOrderTraverse (callback) {
     this.postOrderTraverseNode(this._root, callback)

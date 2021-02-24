@@ -92,6 +92,7 @@ import sort from './sort'
 // import Graph from './Graph'
 import search from './search'
 import random from './random'
+import Promise from './Promise'
 
 const hagan = {
   _rely,
@@ -187,7 +188,8 @@ const hagan = {
   sort,
   // Graph,
   search,
-  random
+  random,
+  Promise
 }
 
 export default hagan

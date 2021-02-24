@@ -1,19 +1,50 @@
 import hagan from '../src/hagan'
 
-const array = [5, 7, 3, 9, 1, 6, 2, 8, 4, 0]
-const arrObj = [
-  { age: 5, name: 'hagan5' },
-  { age: 7, name: 'hagan7' },
-  { age: 3, name: 'hagan3' },
-  { age: 9, name: 'hagan9' },
-  { age: 1, name: 'hagan1' },
-  { age: 6, name: 'hagan6' },
-  { age: 2, name: 'hagan2' },
-  { age: 8, name: 'hagan8' },
-  { age: 4, name: 'hagan4' },
-  { age: 0, name: 'hagan0' },
-]
+const promise = new hagan.Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject('hagan')
+  }, 1000)
+})
+promise.catch((err) => {
+  console.log('err: ', err)
+})
 
-console.time('洗牌算法')
-console.log('洗牌算法: ', hagan.random.shuffle(arrObj))
-console.timeEnd('洗牌算法')
+const promise2 = promise.then((res) => {
+  console.log('promise2 success: ', res)
+}, (err) => {
+  console.log('promise2 error:', err)
+  return 'b'
+})
+
+const promise3 = promise2.then(res => {
+  console.log('promise3 success: ', res)
+  return 'c'
+}, err => {
+  console.log('promise3 error:', err)
+  return 'd'
+})
+
+const promise4 = hagan.Promise.all([
+  new hagan.Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('1')
+    }, 1000)
+    // throw new Error('s')
+  }),
+  new hagan.Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('2')
+    }, 1500)
+  }),
+  3
+])
+
+promise4.then((res) => {
+  console.log(res)
+}, err => {
+  console.log(err)
+})
+
+promise4.catch(err => {
+  console.log(err)
+})
