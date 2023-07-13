@@ -20,7 +20,7 @@ class Promise {
   }
   resolve (value) {
     if (this.status === 'pending') {
-      this.status = 'fufilled'
+      this.status = 'fulfilled'
       this.success = value
       this.onfulfilledCallback.forEach(onfulfilled => onfulfilled())
     }
@@ -34,7 +34,7 @@ class Promise {
   }
   then (onfulfilled, onrejected) {
     return new Promise((resolve, reject) => {
-      if (this.status === 'fufilled') {
+      if (this.status === 'fulfilled') {
         try {
           resolve(onfulfilled(this.success))
         } catch (err) {
